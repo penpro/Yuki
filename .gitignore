@@ -1,0 +1,12 @@
+# Never let keys or secrets into the web root — anything in this folder
+# gets published. The deploy key lives in ~/.ssh, not here.
+*.pem
+*.key
+*.ppk
+.env
+.env.*
+
+# build scratch
+medium-feed.xml
+.medium.json
+*.zip

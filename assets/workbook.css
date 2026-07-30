@@ -1,0 +1,222 @@
+/* ═══════════════════════════════════════════════════════════
+   Yūki's Sacred Space — workbook / guide stylesheet
+
+   One set of component rules, two skins. Everything visual is driven by
+   the --wb-* tokens below, so the "pretty" and "printer friendly" versions
+   never drift apart — only the token block is redeclared.
+
+     default            pretty screen version
+     body.print-preview B&W workbook, on screen
+     @media print       B&W workbook, on paper
+   ═══════════════════════════════════════════════════════════ */
+
+:root{
+  --wb-bg:      #191317;
+  --wb-panel:   linear-gradient(165deg,#2A2126,#1C1519);
+  --wb-ink:     #EFE6E0;
+  --wb-ink-2:   #C6B6B0;
+  --wb-ink-3:   #9A8781;
+  --wb-accent:  #D4A94A;
+  --wb-accent-2:#F2D793;
+  --wb-rule:    rgba(233,222,216,.14);
+  --wb-line:    rgba(233,222,216,.30);   /* the lines you write on */
+  --wb-edge:    rgba(212,169,74,.20);
+  --wb-box:     rgba(212,169,74,.045);
+
+  --wb-display: 'Metamorphous','Papyrus',serif;
+  --wb-body:    'Cormorant Garamond',Georgia,serif;
+  --wb-ui:      ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+body{
+  margin:0; background:var(--wb-bg); color:var(--wb-ink-2);
+  font-family:var(--wb-body); font-size:1.12rem; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+.sheet{ max-width:44rem; margin-inline:auto; padding:2.5rem clamp(1.1rem,4vw,2rem) 4rem; }
+
+a{ color:var(--wb-accent); }
+:focus-visible{ outline:2px solid var(--wb-accent-2); outline-offset:3px; }
+
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+/* ─────────────── toolbar (screen only) ─────────────── */
+
+.wbbar{
+  display:flex; flex-wrap:wrap; gap:.7rem; align-items:center;
+  justify-content:space-between;
+  max-width:44rem; margin:0 auto; padding:1.1rem clamp(1.1rem,4vw,2rem) 0;
+}
+.wbbar__links{ display:flex; flex-wrap:wrap; gap:.6rem; }
+.wbbtn{
+  font-family:var(--wb-ui); font-size:.76rem; letter-spacing:.09em;
+  text-transform:lowercase; text-decoration:none; cursor:pointer;
+  padding:.55rem 1.05rem; border:1px solid var(--wb-edge);
+  background:transparent; color:var(--wb-ink);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.wbbtn:hover{ background:var(--wb-accent); color:#160E04; border-color:var(--wb-accent); }
+.wbbtn--on{ background:var(--wb-accent); color:#160E04; border-color:var(--wb-accent); }
+
+/* ─────────────── masthead ─────────────── */
+
+.wbhead{ text-align:center; padding:2rem 0 2.4rem; border-bottom:1px solid var(--wb-rule); }
+.wbhead .sigil{ width:46px; height:46px; margin-bottom:1rem; }
+.sig-ring{ fill:none; stroke:var(--wb-accent); stroke-width:1; opacity:.75; }
+.sig-ring--in{ opacity:.32; }
+.sig-moon,.sig-dot{ fill:var(--wb-accent); }
+.sig-dot{ opacity:.6; }
+
+.wbhead__kicker{
+  font-family:var(--wb-ui); font-size:.66rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--wb-accent); margin:0 0 .9rem;
+}
+.wbhead__title{
+  font-family:var(--wb-display); font-weight:400; color:var(--wb-ink);
+  font-size:clamp(2rem,6vw,3rem); line-height:1.05; margin:0;
+}
+.wbhead__sub{ margin:1rem auto 0; max-width:30rem; color:var(--wb-ink-3); font-style:italic; }
+
+/* ─────────────── structure ─────────────── */
+
+.howto{
+  border-left:2px solid var(--wb-accent); padding:.2rem 0 .2rem 1.2rem;
+  margin:2.2rem 0; color:var(--wb-ink-2); font-style:italic;
+}
+
+.step{ margin:2.8rem 0 0; break-inside:avoid; }
+.step__n{
+  font-family:var(--wb-ui); font-size:.64rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--wb-accent);
+}
+.step__title{
+  font-family:var(--wb-display); font-weight:400; color:var(--wb-ink);
+  font-size:clamp(1.35rem,3.4vw,1.8rem); line-height:1.2; margin:.5rem 0 .7rem;
+}
+.step__note{ margin:0 0 1.4rem; color:var(--wb-ink-3); }
+
+/* a question plus ruled space to answer it */
+.q{ margin:0 0 1.8rem; break-inside:avoid; }
+.q__ask{
+  display:block; font-family:var(--wb-ui); font-size:.9rem; letter-spacing:.02em;
+  color:var(--wb-ink); margin:0 0 .7rem; font-weight:500;
+}
+.q__hint{
+  display:block; font-family:var(--wb-body); font-size:.98rem;
+  color:var(--wb-ink-3); font-style:italic; margin:-.4rem 0 .7rem;
+}
+.lines{ list-style:none; margin:0; padding:0; }
+.lines li{ height:2.1rem; border-bottom:1px solid var(--wb-line); }
+
+/* tick boxes */
+.ticks{ list-style:none; margin:0; padding:0; }
+.ticks li{
+  position:relative; padding:.42rem 0 .42rem 2.1rem;
+  color:var(--wb-ink-2); font-size:1.02rem;
+}
+.ticks li::before{
+  content:''; position:absolute; left:0; top:.72rem;
+  width:14px; height:14px; border:1px solid var(--wb-line);
+}
+
+/* 0–10 rating strip */
+.scale{ margin:.2rem 0 0; }
+.scale__row{ display:flex; gap:.3rem; }
+.scale__row span{
+  flex:1; text-align:center; padding:.45rem 0;
+  border:1px solid var(--wb-line);
+  font-family:var(--wb-ui); font-size:.72rem; color:var(--wb-ink-3);
+}
+.scale__ends{
+  display:flex; justify-content:space-between; margin-top:.4rem;
+  font-family:var(--wb-ui); font-size:.64rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--wb-ink-3);
+}
+
+/* highlighted exercise panel */
+.panel{
+  border:1px solid var(--wb-edge); background:var(--wb-box);
+  padding:1.5rem 1.4rem; margin:1.6rem 0; break-inside:avoid;
+}
+.panel__title{
+  font-family:var(--wb-ui); font-size:.68rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--wb-accent); margin:0 0 .9rem;
+}
+.panel ol{ margin:0; padding-left:1.2rem; }
+.panel li{ margin-bottom:.55rem; }
+.panel p{ margin:0 0 .8rem; }
+.panel p:last-child{ margin-bottom:0; }
+
+/* the swap: unhelpful thought -> steadier one */
+.swap{ margin:1.4rem 0; break-inside:avoid; }
+.swap__half{ margin-bottom:1.2rem; }
+.swap__label{
+  display:block; font-family:var(--wb-ui); font-size:.66rem; letter-spacing:.16em;
+  text-transform:uppercase; margin:0 0 .5rem;
+}
+.swap__label--from{ color:var(--wb-ink-3); }
+.swap__label--to{ color:var(--wb-accent); }
+
+.wbnote{
+  margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid var(--wb-rule);
+  font-size:.98rem; color:var(--wb-ink-3);
+}
+.wbnote strong{ color:var(--wb-ink-2); font-weight:400; }
+.wbfoot{
+  margin-top:2rem; text-align:center;
+  font-family:var(--wb-ui); font-size:.7rem; letter-spacing:.12em;
+  color:var(--wb-ink-3);
+}
+
+/* ─────────────── printer-friendly skin ─────────────── */
+/* only the tokens change; every rule above is reused verbatim */
+
+body.print-preview{
+  --wb-bg:      #fff;
+  --wb-panel:   none;
+  --wb-ink:     #000;
+  --wb-ink-2:   #1a1a1a;
+  --wb-ink-3:   #444;
+  --wb-accent:  #000;
+  --wb-accent-2:#000;
+  --wb-rule:    #000;
+  --wb-line:    #999;
+  --wb-edge:    #000;
+  --wb-box:     transparent;
+}
+body.print-preview .sheet{
+  background:#fff; box-shadow:0 0 0 1px #ddd;
+  margin-block:1.5rem; max-width:46rem;
+}
+body.print-preview .wbbtn:hover,
+body.print-preview .wbbtn--on{ background:#000; color:#fff; border-color:#000; }
+
+@media print{
+  :root{
+    --wb-bg:      #fff;
+    --wb-panel:   none;
+    --wb-ink:     #000;
+    --wb-ink-2:   #1a1a1a;
+    --wb-ink-3:   #444;
+    --wb-accent:  #000;
+    --wb-accent-2:#000;
+    --wb-rule:    #000;
+    --wb-line:    #999;
+    --wb-edge:    #000;
+    --wb-box:     transparent;
+  }
+  @page{ margin:16mm 14mm; }
+  body{ background:#fff; color:#000; font-size:11.5pt; line-height:1.55; }
+  .wbbar{ display:none; }
+  .sheet{ max-width:none; padding:0; }
+  .wbhead{ padding-top:0; }
+  .step{ page-break-inside:avoid; }
+  .q,.panel,.swap{ page-break-inside:avoid; }
+  .step--break{ page-break-before:always; }
+  a{ color:#000; text-decoration:none; }
+  a[href^="http"]::after{ content:" (" attr(href) ")"; font-size:8.5pt; color:#555; }
+  .lines li{ height:2.4em; border-bottom:1px solid #999; }
+}

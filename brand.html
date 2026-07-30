@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand — Yūki's Sacred Space</title>
+<meta name="description" content="Logo files, colour palette and typefaces for Yūki's Sacred Space.">
+<meta name="theme-color" content="#191317">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<canvas id="aura" aria-hidden="true"></canvas>
+<div class="spine" aria-hidden="true"></div>
+<div class="kanji" aria-hidden="true"><span lang="ja">未来の私のために</span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="spider-sym" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M43 44 L26 29 L11 23"/><path d="M42 48 L20 43 L5 47"/>
+      <path d="M42 53 L21 58 L7 72"/><path d="M44 58 L29 70 L21 90"/>
+      <path d="M57 44 L74 29 L89 23"/><path d="M58 48 L80 43 L95 47"/>
+      <path d="M58 53 L79 58 L93 72"/><path d="M56 58 L71 70 L79 90"/>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M47 57 L44 64"/><path d="M53 57 L56 64"/>
+    </g>
+    <ellipse cx="50" cy="23" rx="16" ry="20" fill="currentColor"/>
+    <ellipse cx="50" cy="49" rx="10" ry="9" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div class="spiders" aria-hidden="true">
+  <span class="spider" style="--size:32px"><span class="spider__thread"></span><svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg></span>
+  <span class="spider" style="--size:44px"><span class="spider__thread"></span><svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg></span>
+  <span class="spider" style="--size:24px"><span class="spider__thread"></span><svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg></span>
+</div>
+
+<a class="skip" href="#main">skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="index.html" aria-label="Yūki's Sacred Space, home">
+    <svg class="sigil" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="21" class="sig-ring"/>
+      <circle cx="24" cy="24" r="14.5" class="sig-ring sig-ring--in"/>
+      <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" class="sig-moon"/>
+      <circle cx="24" cy="1.9" r="1.9" class="sig-dot"/><circle cx="24" cy="46.1" r="1.5" class="sig-dot"/>
+      <circle cx="1.9" cy="24" r="1.5" class="sig-dot"/><circle cx="46.1" cy="24" r="1.5" class="sig-dot"/>
+    </svg>
+    <span class="nav__name">Yūki's Sacred Space</span>
+  </a>
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+    <span class="nav__bars" aria-hidden="true"></span><span class="sr">Menu</span>
+  </button>
+  <nav class="nav__menu" id="navMenu" aria-label="Primary">
+    <a href="index.html#offerings">sessions</a>
+    <a href="index.html#newlife">new life</a>
+    <a href="about.html">about</a>
+    <a href="writing.html">writing</a>
+    <a href="resources.html">resources</a>
+    <a class="btn btn--sm" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <a class="backlink" href="index.html"><span aria-hidden="true">&larr;</span> back to the sacred space</a>
+    <h1 class="phead__title">brand</h1>
+    <p class="phead__sub">
+      everything visual in one place, so anything made later still looks like it belongs.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap about">
+
+    <h2>the mark</h2>
+    <p>
+      A ring, an inner ring, a crescent and four points. Pure vector with no font
+      inside it, so it stays sharp at any size and can be embroidered, stamped or
+      printed as readily as it renders on screen.
+    </p>
+    <div class="marks">
+      <div class="markcard">
+        <div class="markcard__art"><img src="brand/mark-gold.svg" alt="gold mark"></div>
+        <p class="markcard__name">gold</p>
+        <p class="rescard__body" style="font-size:.92rem">the default. sits on the dark background.</p>
+        <a class="btn btn--sm btn--ghost" href="brand/mark-gold.svg" download>download svg</a>
+      </div>
+
+      <div class="markcard">
+        <div class="markcard__art markcard__art--light"><img src="brand/mark-black.svg" alt="black mark"></div>
+        <p class="markcard__name">black</p>
+        <p class="rescard__body" style="font-size:.92rem">one colour. print, stamps, anything light.</p>
+        <a class="btn btn--sm btn--ghost" href="brand/mark-black.svg" download>download svg</a>
+      </div>
+
+      <div class="markcard">
+        <div class="markcard__art markcard__art--dark"><img src="brand/mark-white.svg" alt="white mark"></div>
+        <p class="markcard__name">white</p>
+        <p class="rescard__body" style="font-size:.92rem">one colour, reversed out of dark.</p>
+        <a class="btn btn--sm btn--ghost" href="brand/mark-white.svg" download>download svg</a>
+      </div>
+
+      <div class="markcard">
+        <div class="markcard__art"><img src="brand/favicon.svg" alt="favicon mark"></div>
+        <p class="markcard__name">favicon</p>
+        <p class="rescard__body" style="font-size:.92rem">browser tab, 32px and under.</p>
+        <a class="btn btn--sm btn--ghost" href="brand/favicon.svg" download>download svg</a>
+      </div>
+    </div>
+
+    <h2>colour</h2>
+    <p>
+      Warm near-black, antique gold, plum. Every text colour has been checked against
+      the background — the faintest one still clears 5.4:1.
+    </p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#191317"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">ink</span>
+          <span class="swatch__hex">#191317</span>
+          <span class="swatch__hex">page background</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#2A2126"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">card</span>
+          <span class="swatch__hex">#2A2126</span>
+          <span class="swatch__hex">raised panels</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#EFE6E0"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">bone</span>
+          <span class="swatch__hex">#EFE6E0</span>
+          <span class="swatch__hex">headings, body text</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#9A8781"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">bone soft</span>
+          <span class="swatch__hex">#9A8781</span>
+          <span class="swatch__hex">secondary text</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#D4A94A"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">gold</span>
+          <span class="swatch__hex">#D4A94A</span>
+          <span class="swatch__hex">primary accent</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#F2D793"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">gold light</span>
+          <span class="swatch__hex">#F2D793</span>
+          <span class="swatch__hex">prices, highlights</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#8A4670"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">plum</span>
+          <span class="swatch__hex">#8A4670</span>
+          <span class="swatch__hex">secondary accent</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#B04A4A"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">ember</span>
+          <span class="swatch__hex">#B04A4A</span>
+          <span class="swatch__hex">warnings only</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#0F0F0F"></div>
+        <div class="swatch__meta">
+          <span class="swatch__name">edge</span>
+          <span class="swatch__hex">#0F0F0F</span>
+          <span class="swatch__hex">centring rules</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>type</h2>
+    <div class="specimen">
+      <p class="specimen__label">display · metamorphous</p>
+      <p class="specimen__demo" style="font-family:var(--display);font-size:clamp(1.8rem,5vw,2.8rem)">
+        Yūki’s Sacred Space
+      </p>
+      <p class="specimen__meta">
+        Headings, prices, the wordmark. This was already the face on her Square site,
+        so the new site still reads as hers. Free on Google Fonts.
+      </p>
+    </div>
+    <div class="specimen">
+      <p class="specimen__label">body · cormorant garamond</p>
+      <p class="specimen__demo" style="font-family:var(--body);font-size:1.4rem;font-style:italic">
+        energy doesn’t care about distance, and neither do i.
+      </p>
+      <p class="specimen__meta">
+        All running text. The light and italic weights do most of the work. Free on Google Fonts.
+      </p>
+    </div>
+    <div class="specimen">
+      <p class="specimen__label">japanese · shippori mincho b1</p>
+      <p class="specimen__demo" lang="ja" style="font-family:'Shippori Mincho B1',serif;font-size:2.2rem">
+        未来の私のために
+      </p>
+      <p class="specimen__meta">
+        The watermark phrase — <em>mirai no watashi no tame ni</em>, “for my future self.”
+        A mincho serif, so its brush-derived strokes sit naturally beside the Latin type.
+        Free on Google Fonts.
+      </p>
+    </div>
+
+    <h2>the printer-friendly rule</h2>
+    <p>
+      Everything printable has a black-and-white version, one button away. That version
+      isn’t a downgrade: it uses real ruled lines, avoids heavy ink, and breaks across
+      pages properly. Anything new that gets made should follow the same rule.
+    </p>
+
+    <div class="note">
+      <strong>Where the files live.</strong> Marks are in <code>brand/</code>. Colours and
+      typefaces are declared once at the top of <code>assets/styles.css</code> — change
+      them there and the whole site follows.
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <svg class="sigil sigil--lg" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="21" class="sig-ring"/>
+      <circle cx="24" cy="24" r="14.5" class="sig-ring sig-ring--in"/>
+      <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" class="sig-moon"/>
+      <circle cx="24" cy="1.9" r="1.9" class="sig-dot"/><circle cx="24" cy="46.1" r="1.5" class="sig-dot"/>
+      <circle cx="1.9" cy="24" r="1.5" class="sig-dot"/><circle cx="46.1" cy="24" r="1.5" class="sig-dot"/>
+    </svg>
+      <p class="foot__name">Yūki's Sacred Space</p>
+      <p class="foot__by">Wisteria Yūki &middot; she/her</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="index.html#offerings">sessions</a>
+      <a href="index.html#newlife">new life</a>
+      <a href="about.html">about</a>
+      <a href="writing.html">writing</a>
+      <a href="resources.html">resources</a>
+      <a href="https://www.facebook.com/wistyuki/" target="_blank" rel="noopener">facebook</a>
+    </nav>
+  </div>
+  <p class="foot__fine">
+    &copy; <span id="year">2026</span> Yūki's Sacred Space. energy work is not medical care &mdash;
+    please keep seeing your doctor and your therapist. 🖤
+  </p>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

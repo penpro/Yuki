@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="256" height="256" role="img" aria-label="Yuki's Sacred Space mark">
+  <title>Yūki's Sacred Space</title>
+  <circle cx="24" cy="24" r="21" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="1"/>
+  <circle cx="24" cy="24" r="14.5" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="1"/>
+  <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" fill="#FFFFFF" opacity="1"/>
+  <circle cx="24" cy="1.9" r="1.9" fill="#FFFFFF" opacity="1"/>
+  <circle cx="24" cy="46.1" r="1.5" fill="#FFFFFF" opacity="1"/>
+  <circle cx="1.9" cy="24" r="1.5" fill="#FFFFFF" opacity="1"/>
+  <circle cx="46.1" cy="24" r="1.5" fill="#FFFFFF" opacity="1"/>
+</svg>

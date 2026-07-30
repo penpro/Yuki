@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yūki's Sacred Space — distance reiki, spirit guidance, death doula</title>
+<meta name="description" content="Distance reiki, intuitive readings, and confidential conversation with Wisteria Yūki. Spirit guide, reiki master, death doula. Sessions from 15 minutes to a full hour, sent anywhere.">
+<meta name="theme-color" content="#191317">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yūki's Sacred Space">
+<meta property="og:description" content="Distance reiki, intuitive readings, and confidential conversation. Spirit guide, reiki master, death doula.">
+<meta property="og:site_name" content="Yūki's Sacred Space">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<canvas id="aura" aria-hidden="true"></canvas>
+
+<!-- darker centring strip; sits behind the kanji and holds the column -->
+<div class="spine" aria-hidden="true"></div>
+
+<!-- 未来の私のために — "for my future self". Decorative watermark, so it's
+     hidden from screen readers rather than read out untranslated. -->
+<div class="kanji" aria-hidden="true"><span lang="ja">未来の私のために</span></div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- spider artwork, defined once and re-used by every .spider -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <!-- abdomen at the top so the silk pays out of the spinnerets, not the head -->
+  <symbol id="spider-sym" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M43 44 L26 29 L11 23"/>
+      <path d="M42 48 L20 43 L5 47"/>
+      <path d="M42 53 L21 58 L7 72"/>
+      <path d="M44 58 L29 70 L21 90"/>
+      <path d="M57 44 L74 29 L89 23"/>
+      <path d="M58 48 L80 43 L95 47"/>
+      <path d="M58 53 L79 58 L93 72"/>
+      <path d="M56 58 L71 70 L79 90"/>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M47 57 L44 64"/>
+      <path d="M53 57 L56 64"/>
+    </g>
+    <ellipse cx="50" cy="23" rx="16" ry="20" fill="currentColor"/>
+    <ellipse cx="50" cy="49" rx="10" ry="9" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- spiders live in a fixed layer: above the kanji, behind all page text -->
+<div class="spiders" aria-hidden="true">
+  <span class="spider" style="--size:32px">
+    <span class="spider__thread"></span>
+    <svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg>
+  </span>
+  <span class="spider" style="--size:44px">
+    <span class="spider__thread"></span>
+    <svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg>
+  </span>
+  <span class="spider" style="--size:24px">
+    <span class="spider__thread"></span>
+    <svg class="spider__body" viewBox="0 0 100 100"><use href="#spider-sym"/></svg>
+  </span>
+</div>
+
+<a class="skip" href="#offerings">skip to offerings</a>
+
+<!-- ───────────────────────── nav ───────────────────────── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Yūki's Sacred Space, back to top">
+    <svg class="sigil" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="21" class="sig-ring"/>
+      <circle cx="24" cy="24" r="14.5" class="sig-ring sig-ring--in"/>
+      <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" class="sig-moon"/>
+      <circle cx="24" cy="1.9" r="1.9" class="sig-dot"/>
+      <circle cx="24" cy="46.1" r="1.5" class="sig-dot"/>
+      <circle cx="1.9" cy="24" r="1.5" class="sig-dot"/>
+      <circle cx="46.1" cy="24" r="1.5" class="sig-dot"/>
+    </svg>
+    <span class="nav__name">Yūki's Sacred Space</span>
+  </a>
+
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+    <span class="nav__bars" aria-hidden="true"></span>
+    <span class="sr">Menu</span>
+  </button>
+
+  <nav class="nav__menu" id="navMenu" aria-label="Primary">
+    <a href="#offerings">sessions</a>
+    <a href="#newlife">new life</a>
+    <a href="about.html">about</a>
+    <a href="writing.html">writing</a>
+    <a href="resources.html">resources</a>
+    <a class="btn btn--sm" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book</a>
+  </nav>
+</header>
+
+<!-- ───────────────────────── hero ───────────────────────── -->
+<main id="top">
+<section class="hero">
+  <div class="hero__inner">
+    <p class="eyebrow reveal">distance reiki · sent anywhere</p>
+
+    <h1 class="hero__title reveal" style="--i:1">
+      <span class="hero__line">Yūki's</span>
+      <span class="hero__line hero__line--accent">Sacred</span>
+      <span class="hero__line hero__line--accent">Space</span>
+    </h1>
+
+    <p class="hero__roles reveal" style="--i:2">
+      <span>spirit guide</span><i aria-hidden="true">✦</i><span>reiki master</span><i aria-hidden="true">✦</i><span>death doula</span>
+    </p>
+
+    <p class="hero__lede reveal" style="--i:3">
+      energy doesn't care about distance, and neither do i. book fifteen minutes or
+      a full hour — i'll sit with you from wherever you are.
+    </p>
+
+    <div class="hero__cta reveal" style="--i:4">
+      <a class="btn btn--gold" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book a session</a>
+      <a class="btn btn--ghost" href="#reiki">what is this?</a>
+    </div>
+  </div>
+
+  <a class="scrollcue" href="#pillars" aria-label="Scroll down">
+    <span class="scrollcue__line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<!-- ───────────────────────── pillars ───────────────────────── -->
+<section class="pillars" id="pillars">
+  <div class="wrap pillars__grid">
+    <article class="pillar reveal">
+      <span class="pillar__mark" aria-hidden="true">☾</span>
+      <h2>spirit guide</h2>
+      <p>i listen for what's speaking around you, and i tell you plainly what i hear.</p>
+    </article>
+    <article class="pillar reveal" style="--i:1">
+      <span class="pillar__mark" aria-hidden="true">✧</span>
+      <h2>reiki master</h2>
+      <p>hands-off energy work, sent anywhere. no room, no table, no travel.</p>
+    </article>
+    <article class="pillar reveal" style="--i:2">
+      <span class="pillar__mark" aria-hidden="true">☗</span>
+      <h2>death doula</h2>
+      <p>presence for endings — the literal ones, and all the other kinds.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ───────────────────────── offerings ───────────────────────── -->
+<section class="section" id="offerings">
+  <div class="wrap">
+    <header class="shead reveal">
+      <p class="eyebrow">the work</p>
+      <h2 class="shead__title">distance reiki</h2>
+      <p class="shead__sub">
+        four depths. pick by how much time you want me sitting with you —
+        not by how broken you think you are.
+      </p>
+    </header>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card__top">
+          <h3 class="card__name">quickie</h3>
+          <span class="card__time">15 min</span>
+        </div>
+        <div class="depth" aria-label="Depth: 1 of 4"><i class="on"></i><i></i><i></i><i></i></div>
+        <p class="card__body">15 minutes for a quick boost. i mostly will only have time to help clear and realign your chakras.</p>
+        <div class="card__foot">
+          <span class="card__price">$45</span>
+          <a class="btn btn--sm btn--ghost" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 15 minute quickie session</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--i:1">
+        <div class="card__top">
+          <h3 class="card__name">original</h3>
+          <span class="card__time">30 min</span>
+        </div>
+        <div class="depth" aria-label="Depth: 2 of 4"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        <p class="card__body">30 minutes gives me enough time to cleanse your energetic field, help heal your timeline and core soul wounds, and listen for any deeper psychic messages that may come up.</p>
+        <div class="card__foot">
+          <span class="card__price">$90</span>
+          <a class="btn btn--sm btn--ghost" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 30 minute original session</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--i:2">
+        <div class="card__top">
+          <h3 class="card__name">deep clean</h3>
+          <span class="card__time">45 min</span>
+        </div>
+        <div class="depth" aria-label="Depth: 3 of 4"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        <p class="card__body">i sit with you for 45 minutes, intuitively cleaning and transmuting what needs changing. i'll do grid work, spend time with necessary deities and spirit guides, i'll work on cleansing and protecting your house and connections as well as timeline healing and shifting.</p>
+        <div class="card__foot">
+          <span class="card__price">$135</span>
+          <a class="btn btn--sm btn--ghost" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 45 minute deep clean session</span></a>
+        </div>
+      </article>
+
+      <article class="card card--feature reveal" style="--i:3">
+        <span class="card__flag">not for first timers</span>
+        <div class="card__top">
+          <h3 class="card__name">tantric</h3>
+          <span class="card__time">60 min</span>
+        </div>
+        <div class="depth" aria-label="Depth: 4 of 4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <p class="card__body">60 minutes gives me enough time for every aspect of your mind, body, soul, and environment to be doused in reiki. i will throw everything i know at you 😇 i do not recommend this session length if you've never had reiki before!</p>
+        <div class="card__foot">
+          <span class="card__price">$210</span>
+          <a class="btn btn--sm btn--gold" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 60 minute tantric session</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── chats ───────────────────────── -->
+<section class="section section--alt" id="chats">
+  <div class="wrap">
+    <header class="shead reveal">
+      <p class="eyebrow">or just talk</p>
+      <h2 class="shead__title">chats</h2>
+      <p class="shead__sub">
+        a phone call, whatever's on your mind. completely confidential.
+        i always send a little reiki over while we talk.
+      </p>
+    </header>
+
+    <div class="cards cards--two">
+      <article class="card reveal">
+        <div class="card__top">
+          <h3 class="card__name">short call</h3>
+          <span class="card__time">30 min</span>
+        </div>
+        <p class="card__body">30 mins dedicated to whatever is on your mind. i will apply everything i know about being a spirit guide or CBT life coach during our chat, and i always send over a little reiki while we talk as well.</p>
+        <div class="card__foot">
+          <span class="card__price">$90</span>
+          <a class="btn btn--sm btn--ghost" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 30 minute phone call</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--i:1">
+        <div class="card__top">
+          <h3 class="card__name">hour call</h3>
+          <span class="card__time">60 min</span>
+        </div>
+        <p class="card__body">an hour dedicated to whatever is on your mind. i will apply everything i know about being a spirit guide or CBT life coach during our chat, and i always send over a little reiki while we talk as well.</p>
+        <div class="card__foot">
+          <span class="card__price">$180</span>
+          <a class="btn btn--sm btn--ghost" href="https://yukisacredspace.square.site/s/appointments" target="_blank" rel="noopener">book<span class="sr"> the 60 minute phone call</span></a>
+        </div>
+      </article>
+    </div>
+
+    <p class="confidential reveal" style="--i:2">
+      <span aria-hidden="true">🔒</span> completely confidential. always.
+    </p>
+  </div>
+</section>
+
+<!-- ───────────────────────── new life ───────────────────────── -->
+<section class="section flagship" id="newlife">
+  <div class="wrap">
+    <div class="flagship__panel reveal">
+      <p class="eyebrow">the big one</p>
+      <h2 class="flagship__title">new life</h2>
+      <p class="flagship__lede">
+        1% better every day, twice a week, for three months.
+        small changes don't stay small — they compound.
+      </p>
+
+      <div class="flagship__stats">
+        <div class="flagship__stat"><b>3</b><span>months</span></div>
+        <div class="flagship__stat"><b>2×</b><span>a week</span></div>
+        <div class="flagship__stat"><b>1 hr</b><span>each time</span></div>
+        <div class="flagship__stat"><b>24</b><span>sessions</span></div>
+      </div>
+
+      <div class="flagship__body">
+        <p>this isn't a session. it's a container.</p>
+        <p>
+          twice a week for twelve weeks, an hour at a time, i throw everything i
+          have at your actual life — reiki, spirit guidance, CBT coaching,
+          timeline and soul wound work, whatever that week is asking for. we
+          clear, we build, we adjust, and then we come back before any of it has
+          a chance to settle backward.
+        </p>
+        <p>
+          you don't rebuild a life in a weekend. you rebuild it by showing up
+          twice a week and letting the work stack until one day it isn't the
+          same life.
+        </p>
+        <p class="flagship__kicker">
+          by the end, you will not be the person who booked this.
+        </p>
+      </div>
+
+      <div class="flagship__buy">
+        <p class="flagship__price">$3,600</p>
+        <p class="flagship__each">24 hours together · $150 a session instead of $210 · you save $1,440</p>
+        <a class="btn btn--gold" href="https://www.facebook.com/wistyuki/" target="_blank" rel="noopener">let's talk first</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── what reiki is ───────────────────────── -->
+<section class="section reiki" id="reiki">
+  <div class="wrap reiki__grid">
+    <div class="reiki__copy reveal">
+      <p class="eyebrow">for the skeptical &amp; the curious</p>
+      <h2 class="shead__title">what actually happens</h2>
+
+      <p>reiki is energy work. i don't need to be in the room with you — energy doesn't care about distance, and neither do i.</p>
+
+      <p>you book a time. you lie down, or you don't. you can be at work, asleep, driving, doing dishes. i sit with your energy for the length of the session and i work: clearing what's stuck, realigning what's crooked, pulling out what isn't yours, and listening for whatever wants to be said.</p>
+
+      <p>afterward, i tell you what i found.</p>
+
+      <p class="reiki__kicker">you don't have to believe in it. you don't have to explain yourself. you don't have to have a good reason. curiosity is a reason.</p>
+
+      <a class="link-arrow" href="https://www.facebook.com/share/p/1CRg9BYkHZ/" target="_blank" rel="noopener">
+        the longer version, in my own words <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <aside class="reiki__aside reveal" style="--i:1">
+      <h3>first time?</h3>
+      <ol class="steps">
+        <li><span>01</span> book anything except <em>tantric</em> — start at 30 minutes if you can.</li>
+        <li><span>02</span> go about your day. no prep, no candles, no special position required.</li>
+        <li><span>03</span> i work through your window of time from wherever i am.</li>
+        <li><span>04</span> you get my notes on what came up.</li>
+      </ol>
+      <p class="steps__note">not sure which one? <a href="https://www.facebook.com/wistyuki/" target="_blank" rel="noopener">just message me</a> and i'll tell you.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ───────────────────────── writing ───────────────────────── -->
+<section class="section section--alt" id="writing">
+  <div class="wrap">
+    <header class="shead reveal">
+      <p class="eyebrow">longform</p>
+      <h2 class="shead__title">writing</h2>
+      <p class="shead__sub">the thoughts that don't fit in a session.</p>
+    </header>
+
+    <ul class="topics reveal" style="--i:1">
+      <li>twinflame taboo</li>
+      <li>thoughts about collective consciousness</li>
+      <li>i want to talk about spiritual psychosis.</li>
+      <li>spiders: master manifesters</li>
+      <li>false twinflame vs real twinflame</li>
+      <li>you don't need to "touch grass" to ground</li>
+    </ul>
+
+    <div class="center reveal" style="--i:2">
+      <a class="btn btn--ghost" href="https://medium.com/@wistyuki" target="_blank" rel="noopener">read everything on medium</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── reach ───────────────────────── -->
+<section class="section reach" id="reach">
+  <div class="wrap">
+    <div class="reach__panel reveal">
+      <p class="reach__heart" aria-hidden="true">🖤</p>
+      <h2 class="reach__title">message me for alternative scheduling,<br>payment, or trade options</h2>
+      <p class="reach__sub">
+        money shouldn't be the reason you don't get help. if the times don't work
+        or the price doesn't work, say so — we'll figure something out.
+      </p>
+      <div class="reach__btns">
+        <a class="btn btn--gold" href="https://www.facebook.com/wistyuki/" target="_blank" rel="noopener">message me</a>
+        <a class="btn btn--ghost" href="https://app.squareup.com/gift/MLVRCD0K8PE50/order" target="_blank" rel="noopener">gift a session</a>
+      </div>
+
+      <div class="pay">
+        <span class="pay__label">direct payment</span>
+        <div class="pay__links">
+          <a href="https://venmo.com/code?user_id=3494084635264960508&amp;created=1785105977" target="_blank" rel="noopener">venmo</a>
+          <a href="https://cash.app/$wistyuki" target="_blank" rel="noopener">cash app</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ───────────────────────── footer ───────────────────────── -->
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <svg class="sigil sigil--lg" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="21" class="sig-ring"/>
+        <circle cx="24" cy="24" r="14.5" class="sig-ring sig-ring--in"/>
+        <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" class="sig-moon"/>
+        <circle cx="24" cy="1.9" r="1.9" class="sig-dot"/>
+        <circle cx="24" cy="46.1" r="1.5" class="sig-dot"/>
+        <circle cx="1.9" cy="24" r="1.5" class="sig-dot"/>
+        <circle cx="46.1" cy="24" r="1.5" class="sig-dot"/>
+      </svg>
+      <p class="foot__name">Yūki's Sacred Space</p>
+      <p class="foot__by">Wisteria Yūki · she/her</p>
+    </div>
+
+    <nav class="foot__links" aria-label="Footer">
+      <a href="#offerings">sessions</a>
+      <a href="#chats">chats</a>
+      <a href="#newlife">new life</a>
+      <a href="#reiki">what reiki is</a>
+      <a href="https://medium.com/@wistyuki" target="_blank" rel="noopener">writing</a>
+      <a href="https://www.facebook.com/wistyuki" target="_blank" rel="noopener">facebook</a>
+      <a href="https://app.squareup.com/gift/MLVRCD0K8PE50/order" target="_blank" rel="noopener">gift cards</a>
+    </nav>
+  </div>
+
+  <p class="foot__fine">
+    © <span id="year">2026</span> Yūki's Sacred Space. energy work is not medical care —
+    please keep seeing your doctor and your therapist. 🖤
+  </p>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
