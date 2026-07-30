@@ -59,7 +59,7 @@ This site is the front door Square wasn't giving her.
 
 ### 0. Prices on this site no longer match Square — fix this first
 
-Every price here has been tripled: $45 / $90 / $135 / $210 for reiki, $90 / $180
+Every price here has been doubled: $30 / $60 / $90 / $140 for reiki, $60 / $120
 for calls. **Square still has the old $15 / $30 / $45 / $70 / $30 / $60.**
 
 Until she updates the prices in her Square dashboard, the site advertises one
@@ -69,18 +69,18 @@ the `card__price` spans in `index.html` if they need to move again.
 
 ### 0b. The "new life" package has no Square product yet
 
-A three-month container: twice a week, an hour each, 24 sessions, **$3,600**.
+A three-month container: twice a week, an hour each, 24 sessions, **$2,400**.
 
 Its button goes to Facebook Messenger rather than a booking link, which is the
 right call for a commitment that size — she'll want a conversation first. If she
 later wants to take payment or deposits directly, she can create a Square product
 or invoice and swap the `href` on that button.
 
-The arithmetic: 24 sessions at her walk-up $210 rate would be $5,040. At $3,600
-that's **$150 a session — a saving of $1,440, about 29% off.** That's a real bulk
+The arithmetic: 24 sessions at her walk-up $140 rate would be $3,360. At $2,400
+that's **$100 a session — a saving of $960, about 29% off.** That's a real bulk
 discount that still values her time properly: enough to reward the commitment,
 not so much that it undercuts single sessions. If she wants to move it, keep the
-per-session number round — $3,600 / $3,840 / $4,080 all divide cleanly by 24.
+per-session number round — $2,400 / $2,640 / $2,880 all divide cleanly by 24.
 
 ### 1. Photos — the biggest gap
 There isn't a single image of her, her space, or her work. The current site has

@@ -10,6 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+
+<!-- Scroll reveals start at opacity:0 and are switched on by main.js. If JS
+     never runs — blocked, failed to load, ancient browser — the entire page
+     would otherwise stay invisible. Content must never depend on script. -->
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
