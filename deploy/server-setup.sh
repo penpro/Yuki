@@ -49,10 +49,30 @@ sudo mkdir -p "$WEB_ROOT"
 sudo chown -R "$USER":www-data "$WEB_ROOT"
 sudo chmod -R 755 "$WEB_ROOT"
 
-echo "==> Security headers snippet"
+echo "==> nginx snippets"
 sudo mkdir -p /etc/nginx/snippets
 sudo cp "$REPO_ROOT/deploy/security-headers.conf" \
         /etc/nginx/snippets/yuki-security-headers.conf
+sudo cp "$REPO_ROOT/deploy/proxy.conf" \
+        /etc/nginx/snippets/yuki-proxy.conf
+
+# The admin is only exposed once there's a domain, because a domain is the
+# prerequisite for a certificate and a login form on plain HTTP leaks the
+# password to anyone on the network path. With no domain the snippet is
+# removed and nginx's wildcard include simply matches nothing.
+if [ "$DOMAIN" = "_" ]; then
+  echo "==> No domain: admin routes will NOT be exposed (HTTP only)"
+  sudo rm -f /etc/nginx/snippets/yuki-admin.conf
+else
+  echo "==> Domain set: exposing admin routes"
+  sudo cp "$REPO_ROOT/deploy/nginx-admin.conf" \
+          /etc/nginx/snippets/yuki-admin.conf
+fi
+
+echo "==> Uploads directory"
+sudo mkdir -p /var/www/yuki-uploads
+sudo chown -R "$USER":www-data /var/www/yuki-uploads
+sudo chmod 755 /var/www/yuki-uploads
 
 echo "==> Site config"
 sudo cp "$REPO_ROOT/deploy/nginx-yuki.conf" /etc/nginx/sites-available/yuki

@@ -10,3 +10,8 @@
 medium-feed.xml
 .medium.json
 *.zip
+
+# backend
+backend/node_modules/
+backend/.env
+backend/package-lock.json

@@ -838,3 +838,29 @@ main,.nav,.foot{ position:relative; z-index:5; }
   font-family:var(--ui); font-size:.74rem; color:var(--bone-3);
   margin:.9rem 0 0; line-height:1.6;
 }
+
+/* ─────────────── testimonials ─────────────── */
+
+.quotelist{
+  display:grid; gap:1.15rem;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  max-width:58rem; margin-inline:auto;
+}
+.quote{
+  margin:0; padding:1.9rem 1.7rem;
+  border:1px solid var(--edge-soft);
+  background:linear-gradient(165deg,var(--card-a),var(--card-b));
+}
+.quote__body{
+  margin:0; font-size:1.05rem; font-style:italic; color:var(--bone-2);
+  line-height:1.68; position:relative;
+}
+.quote__body::before{
+  content:'\201C'; position:absolute; top:-1.4rem; left:-.4rem;
+  font-family:var(--display); font-size:2.6rem; color:var(--gold); opacity:.35;
+}
+.quote__by{
+  margin-top:1.3rem; padding-top:1rem; border-top:1px solid var(--edge-soft);
+  font-family:var(--ui); font-size:.7rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--bone-3);
+}

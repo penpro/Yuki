@@ -339,8 +339,14 @@ page('resources.html', u"Free guides — " + YUKI + u"'s Sacred Space",
 
 <section class="section" style="padding-top:0">
   <div class="wrap">
+    <!-- The backend replaces everything between these two markers with the
+         published rows from MySQL. The cards below are the seeded set and
+         stay here on purpose: if node is down, nginx falls back to this file
+         and visitors still get a working page instead of a 502. -->
     <div class="rescards">
+<!--RESOURCE_CARDS_START-->
 %s
+<!--RESOURCE_CARDS_END-->
     </div>
 
     <div class="note reveal">

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in — Yūki's Sacred Space</title>
+<link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="login-body">
+
+<main class="loginbox">
+  <svg class="loginbox__sigil" viewBox="0 0 48 48" aria-hidden="true">
+    <circle cx="24" cy="24" r="21" class="sig-ring"/>
+    <circle cx="24" cy="24" r="14.5" class="sig-ring sig-ring--in"/>
+    <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" class="sig-moon"/>
+    <circle cx="24" cy="1.9" r="1.9" class="sig-dot"/><circle cx="24" cy="46.1" r="1.5" class="sig-dot"/>
+    <circle cx="1.9" cy="24" r="1.5" class="sig-dot"/><circle cx="46.1" cy="24" r="1.5" class="sig-dot"/>
+  </svg>
+
+  <h1 class="loginbox__title">Sacred Space</h1>
+  <p class="loginbox__sub">admin</p>
+
+  <div id="insecure" class="warnbar" hidden>
+    This page is not on HTTPS. Your password would be sent in the clear —
+    don't sign in until the certificate is installed.
+  </div>
+
+  <form id="loginForm" novalidate>
+    <label class="field">
+      <span class="field__label">email</span>
+      <input class="field__input" type="email" name="email" id="email"
+             autocomplete="username" required autofocus>
+    </label>
+
+    <label class="field">
+      <span class="field__label">password</span>
+      <input class="field__input" type="password" name="password" id="password"
+             autocomplete="current-password" required>
+    </label>
+
+    <p class="formerror" id="error" role="alert" hidden></p>
+
+    <button class="btn btn--gold btn--full" type="submit" id="submit">sign in</button>
+  </form>
+</main>
+
+<script src="/admin/assets/login.js"></script>
+</body>
+</html>
