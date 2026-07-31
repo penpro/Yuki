@@ -32,6 +32,7 @@ sudo rsync -a --delete \
   --exclude='.git/' \
   --exclude='.gitignore' \
   --exclude='deploy/' \
+  --exclude='backend/' \
   --exclude='*.py' \
   --exclude='*.pem' \
   --exclude='*.key' \
