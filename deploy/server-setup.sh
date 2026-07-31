@@ -85,6 +85,19 @@ if [ -e /etc/nginx/sites-enabled/default ]; then
   sudo rm -f /etc/nginx/sites-enabled/default
 fi
 
+# Copying nginx-yuki.conf over the live config throws away everything certbot
+# wrote into it — the 443 block, the certificate paths and the HTTP->HTTPS
+# redirect. Re-running this script after certbot therefore used to silently
+# take the site off HTTPS while leaving the admin routes exposed on plain
+# HTTP, which is the exact situation the admin gating exists to prevent.
+#
+# If a certificate already exists for this domain, put it straight back.
+if [ "$DOMAIN" != "_" ] && sudo test -d "/etc/letsencrypt/live/$DOMAIN"; then
+  echo "==> Existing certificate found — reinstalling TLS into the new config"
+  sudo certbot install --cert-name "$DOMAIN" --nginx --non-interactive --redirect 2>&1 \
+    | grep -E "Deploying|Successfully|error" || true
+fi
+
 echo "==> Testing nginx config"
 sudo nginx -t
 
