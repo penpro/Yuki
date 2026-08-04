@@ -42,9 +42,15 @@ echo "==> Applying database migrations"
 echo ""
 echo "==> Installing backend dependencies"
 cd "$BACKEND_DIR"
-if [ -f package-lock.json ]; then
-  npm ci --omit=dev --silent
+# npm ci is preferred — it installs exactly what the committed lockfile says.
+# But it hard-fails if package.json and the lockfile have drifted, which is
+# what happens the first deploy after a dependency is added and the lockfile
+# wasn't regenerated. Falling back to npm install means a dependency change
+# can't silently leave the old code running with the new package.json.
+if [ -f package-lock.json ] && npm ci --omit=dev --silent 2>/dev/null; then
+  echo "    installed from lockfile"
 else
+  echo "    lockfile missing or out of sync — falling back to npm install"
   npm install --omit=dev --silent
 fi
 

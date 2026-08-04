@@ -14,4 +14,3 @@ medium-feed.xml
 # backend
 backend/node_modules/
 backend/.env
-backend/package-lock.json
