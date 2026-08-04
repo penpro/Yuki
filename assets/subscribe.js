@@ -47,6 +47,12 @@
           if (!res.ok) return say(res.d.error || 'something went wrong — try again?', false);
 
           form.reset();
+          // cta.js listens for this so the modal can stop asking someone who
+          // has already signed up.
+          document.dispatchEvent(new CustomEvent('yuki:subscribed', {
+            detail: { source: form.getAttribute('data-source') || 'website' },
+          }));
+
           if (res.d.alreadySubscribed) {
             say('you’re already on the list — nothing more to do 🖤', true);
           } else if (res.d.mailConfigured === false) {

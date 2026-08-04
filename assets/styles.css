@@ -913,3 +913,84 @@ main,.nav,.foot{ position:relative; z-index:5; }
 }
 .signup__msg--ok{ color:var(--gold-lit); }
 .signup__msg--bad{ color:#F0A8A8; }
+
+/* ─────────────── floating CTAs ─────────────── */
+
+.fab{
+  position:fixed; right:clamp(1rem,3vw,2rem); bottom:clamp(1rem,3vw,2rem);
+  z-index:60; display:flex; flex-direction:column; gap:.6rem;
+  opacity:0; transform:translateY(12px); pointer-events:none;
+  transition:opacity .4s var(--ease), transform .4s var(--ease);
+}
+.fab.is-in{ opacity:1; transform:none; pointer-events:auto; }
+
+.fab__btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px;                       /* comfortable tap target */
+  padding:.8rem 1.6rem; cursor:pointer;
+  font-family:var(--ui); font-size:.82rem; letter-spacing:.1em;
+  text-transform:lowercase; text-decoration:none;
+  border:1px solid var(--edge);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.9);
+  transition:background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+}
+.fab__btn--gold{ background:var(--gold); color:#160E04; border-color:var(--gold); }
+.fab__btn--gold:hover{ background:var(--gold-lit); border-color:var(--gold-lit); }
+.fab__btn--ghost{
+  background:rgba(25,19,23,.92); color:var(--bone);
+  backdrop-filter:blur(10px);
+}
+.fab__btn--ghost:hover{ background:var(--gold); color:#160E04; border-color:var(--gold); }
+.fab__btn:hover{ transform:translateY(-2px); }
+
+@media (max-width:620px){
+  /* A bar across the bottom reads better than a stack on a phone, and keeps
+     both actions inside thumb reach. */
+  .fab{
+    left:0; right:0; bottom:0;
+    flex-direction:row; gap:0;
+    padding:0;
+  }
+  .fab__btn{ flex:1; border-radius:0; box-shadow:none; padding:1.05rem .5rem; }
+  .fab__btn--ghost{ border-left:none; }
+}
+
+/* ─────────────── signup modal ─────────────── */
+
+.modal{
+  width:min(30rem,92vw); padding:0; border:1px solid var(--edge);
+  background:linear-gradient(170deg,var(--card-a),var(--card-b));
+  color:var(--bone-2);
+}
+.modal::backdrop{ background:rgba(7,5,6,.82); backdrop-filter:blur(3px); }
+.modal__inner{ position:relative; padding:clamp(2rem,5vw,2.8rem); text-align:center; }
+
+.modal__close{
+  position:absolute; top:.5rem; right:.6rem;
+  width:40px; height:40px; line-height:1;
+  background:none; border:0; cursor:pointer;
+  font-size:1.7rem; color:var(--bone-3);
+  transition:color .3s;
+}
+.modal__close:hover{ color:var(--bone); }
+
+.modal__title{
+  font-family:var(--display); font-weight:400; color:var(--bone);
+  font-size:clamp(1.5rem,4vw,2rem); line-height:1.2; margin:0 0 .9rem;
+}
+.modal__sub{ margin:0; color:var(--bone-3); font-style:italic; font-size:1rem; }
+
+.signup__form--modal{ flex-direction:column; margin-top:1.6rem; }
+.signup__form--modal .signup__input{ flex:1 1 auto; max-width:none; width:100%; }
+.signup__form--modal .btn{ width:100%; }
+
+.modal__dismiss{
+  margin-top:1.2rem; background:none; border:0; cursor:pointer;
+  font-family:var(--ui); font-size:.76rem; letter-spacing:.08em;
+  color:var(--bone-3); text-decoration:underline; text-underline-offset:3px;
+}
+.modal__dismiss:hover{ color:var(--bone-2); }
+
+@media (prefers-reduced-motion:reduce){
+  .fab{ transition:none; }
+}

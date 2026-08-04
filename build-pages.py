@@ -141,8 +141,38 @@ FOOT = u'''</main>
   </p>
 </footer>
 
+<div class="fab" id="fab" hidden>
+  <a class="fab__btn fab__btn--gold" id="fabBook"
+     href="BOOKURL" target="_blank" rel="noopener">book</a>
+  <button class="fab__btn fab__btn--ghost" id="fabSignup" type="button">sign up</button>
+</div>
+
+<dialog class="modal" id="signupModal" aria-labelledby="modalTitle">
+  <div class="modal__inner">
+    <button class="modal__close" id="modalClose" type="button" aria-label="Close">&times;</button>
+    <p class="eyebrow" id="modalKicker">free</p>
+    <h2 class="modal__title" id="modalTitle">want the free guides?</h2>
+    <p class="modal__sub" id="modalSub">
+      breathing, meditation, and workbooks for when your head won't stop.
+      plus a note when there's something new. one click to leave, whenever you like.
+    </p>
+    <form class="signup__form signup__form--modal" data-subscribe data-source="modal" novalidate>
+      <div class="signup__trap" aria-hidden="true">
+        <label>leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <label class="sr" for="modal-email">your email</label>
+      <input class="signup__input" id="modal-email" type="email" name="email"
+             placeholder="your email" autocomplete="email" required>
+      <button class="btn btn--gold" type="submit">send them to me</button>
+    </form>
+    <p class="signup__msg" data-subscribe-msg role="status" hidden></p>
+    <button class="modal__dismiss" id="modalDismiss" type="button">no thanks</button>
+  </div>
+</dialog>
+
 <script src="assets/main.js"></script>
 <script src="assets/subscribe.js"></script>
+<script src="assets/cta.js"></script>
 </body>
 </html>
 '''
