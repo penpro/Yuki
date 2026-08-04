@@ -116,30 +116,32 @@
 
   /* ── when to show the buttons ─────────────────────────────── */
 
-  var ctaInView = false;
-
-  // Hide the floating pair while any real CTA block is on screen.
+  // Blocks whose presence on screen should suppress the floating pair.
   var watched = ['#signup', '#reach', '.hero__cta', '.foot'].reduce(function (acc, sel) {
     return acc.concat(Array.prototype.slice.call(document.querySelectorAll(sel)));
   }, []);
 
-  if ('IntersectionObserver' in window && watched.length) {
-    var seen = new Set();
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) seen.add(en.target); else seen.delete(en.target);
-      });
-      ctaInView = seen.size > 0;
-      update();
-    }, { threshold: 0.15 });
-    watched.forEach(function (el) { io.observe(el); });
+  // Measured live rather than cached from an IntersectionObserver. An
+  // observer only reports when it fires, and it does NOT fire while the
+  // document is hidden — so a page opened in a background tab could keep a
+  // stale "a CTA is visible" state forever and never show the buttons.
+  // Four getBoundingClientRect calls inside an rAF-throttled scroll handler
+  // costs nothing and cannot go stale.
+  function ctaOnScreen() {
+    var vh = window.innerHeight;
+    for (var i = 0; i < watched.length; i++) {
+      var r = watched[i].getBoundingClientRect();
+      if (!r.height) continue;
+      var visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      if (visible / r.height >= 0.15) return true;
+    }
+    return false;
   }
 
   function update() {
     var pastHero = window.scrollY > window.innerHeight * 0.75;
-    var show = pastHero && !ctaInView;
     fab.hidden = false;
-    fab.classList.toggle('is-in', show);
+    fab.classList.toggle('is-in', pastHero && !ctaOnScreen());
   }
 
   var ticking = false;
