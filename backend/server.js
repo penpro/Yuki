@@ -12,6 +12,9 @@ const { pool, ping } = require('./db');
 const { verifyCredentials, requireAuthPage, login, logout } = require('./auth');
 const publicRoutes = require('./routes/public');
 const adminRoutes = require('./routes/admin');
+const newsletterRoutes = require('./routes/newsletter');
+const mailRoutes = require('./routes/mail');
+const mailer = require('./mailer');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3001);
@@ -75,6 +78,7 @@ const apiLimiter = rateLimit({
 /* ── public ───────────────────────────────────────────────────────────── */
 
 app.use(publicRoutes);
+app.use(newsletterRoutes);
 
 /* ── admin ────────────────────────────────────────────────────────────── */
 
@@ -117,6 +121,7 @@ app.get('/admin', requireAuthPage, (req, res) => {
 
 app.use('/admin/assets', express.static(path.join(ADMIN_UI, 'assets'), { maxAge: '1h' }));
 app.use('/api/admin', apiLimiter, adminRoutes);
+app.use('/api/admin', apiLimiter, mailRoutes);
 
 /* ── errors ───────────────────────────────────────────────────────────── */
 
@@ -148,6 +153,14 @@ app.use((err, req, res, next) => {
   }
   if (!process.env.SESSION_SECRET) {
     console.warn('WARNING: SESSION_SECRET is not set. Sessions are not securely signed.');
+  }
+  if (!mailer.isConfigured()) {
+    console.warn('NOTE: SMTP is not configured. Signups are still recorded, but no');
+    console.warn('      confirmation emails go out and newsletters cannot send.');
+    console.warn('      Set SMTP_HOST / SMTP_PORT / MAIL_FROM_ADDRESS in .env.');
+  } else if (!process.env.MAIL_POSTAL_ADDRESS) {
+    console.warn('WARNING: MAIL_POSTAL_ADDRESS is not set. US commercial email is');
+    console.warn('         legally required to carry a physical mailing address.');
   }
 
   // Bind to loopback only. nginx proxies to it; the port is never reachable

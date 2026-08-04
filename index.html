@@ -400,6 +400,35 @@
   </div>
 </section>
 
+<!-- ───────────────────────── signup ───────────────────────── -->
+<section class="section signup" id="signup">
+  <div class="wrap">
+    <div class="signup__panel reveal">
+      <p class="eyebrow">stay in touch</p>
+      <h2 class="signup__title">hear from me now and then</h2>
+      <p class="signup__sub">
+        new guides, new writing, and the occasional note when i have space open.
+        no schedule, no spam, and one click to leave whenever you want.
+      </p>
+
+      <form class="signup__form" data-subscribe data-source="home" novalidate>
+        <!-- Honeypot. Hidden from people, irresistible to bots; the backend
+             silently accepts and discards anything that fills it in. -->
+        <div class="signup__trap" aria-hidden="true">
+          <label>leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <label class="sr" for="signup-email">your email</label>
+        <input class="signup__input" id="signup-email" type="email" name="email"
+               placeholder="your email" autocomplete="email" required>
+        <button class="btn btn--gold" type="submit">sign me up</button>
+      </form>
+
+      <p class="signup__msg" data-subscribe-msg role="status" hidden></p>
+    </div>
+  </div>
+</section>
+
 <!-- ───────────────────────── reach ───────────────────────── -->
 <section class="section reach" id="reach">
   <div class="wrap">
@@ -463,5 +492,6 @@
 
 <script src="assets/main.js"></script>
 <script src="assets/testimonials.js"></script>
+<script src="assets/subscribe.js"></script>
 </body>
 </html>

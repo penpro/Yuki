@@ -870,3 +870,46 @@ main,.nav,.foot{ position:relative; z-index:5; }
   font-size:.92rem; line-height:1.65; color:var(--bone-3);
   padding-top:1.4rem; border-top:1px solid var(--edge-soft);
 }
+
+/* ─────────────── mailing list signup ─────────────── */
+
+.signup__panel{
+  text-align:center; max-width:44rem; margin-inline:auto;
+  padding:clamp(2.4rem,5vw,3.6rem) clamp(1.5rem,4vw,3rem);
+  border:1px solid var(--edge);
+  background:
+    radial-gradient(80% 120% at 50% 0%,rgba(212,169,74,.09),transparent 62%),
+    linear-gradient(170deg,var(--card-a),var(--card-b));
+}
+.signup__title{
+  font-family:var(--display); font-weight:400; color:var(--bone);
+  font-size:clamp(1.7rem,4vw,2.5rem); line-height:1.15; margin:0;
+}
+.signup__sub{
+  margin:1.1rem auto 0; max-width:32rem;
+  color:var(--bone-3); font-style:italic;
+}
+.signup__form{
+  display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center;
+  margin-top:2rem;
+}
+.signup__input{
+  flex:1 1 17rem; max-width:24rem;
+  padding:.95rem 1.1rem;
+  font-family:var(--body); font-size:1.05rem; color:var(--bone);
+  background:rgba(0,0,0,.32); border:1px solid var(--edge-soft); border-radius:0;
+}
+.signup__input::placeholder{ color:var(--bone-3); opacity:.8; }
+.signup__input:focus{ border-color:var(--gold); outline:none; }
+
+/* Honeypot: off-screen rather than display:none, because some bots skip
+   fields that are explicitly hidden. */
+.signup__trap{
+  position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;
+}
+
+.signup__msg{
+  margin:1.3rem 0 0; font-size:1rem;
+}
+.signup__msg--ok{ color:var(--gold-lit); }
+.signup__msg--bad{ color:#F0A8A8; }

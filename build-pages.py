@@ -142,6 +142,7 @@ FOOT = u'''</main>
 </footer>
 
 <script src="assets/main.js"></script>
+<script src="assets/subscribe.js"></script>
 </body>
 </html>
 '''
@@ -363,6 +364,25 @@ page('resources.html', u"Free guides — " + YUKI + u"'s Sacred Space",
       a substitute for a doctor or a therapist, and they aren’t a substitute for a
       session with me either. If a page opens up more than you expected, that’s worth
       bringing to a person.
+    </div>
+
+    <div class="signup__panel reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+      <p class="eyebrow">stay in touch</p>
+      <h2 class="signup__title">tell me where to send the next one</h2>
+      <p class="signup__sub">
+        i add new guides when something keeps coming up in sessions.
+        leave your email and you'll know when there's another.
+      </p>
+      <form class="signup__form" data-subscribe data-source="resources" novalidate>
+        <div class="signup__trap" aria-hidden="true">
+          <label>leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <label class="sr" for="res-email">your email</label>
+        <input class="signup__input" id="res-email" type="email" name="email"
+               placeholder="your email" autocomplete="email" required>
+        <button class="btn btn--gold" type="submit">send me new guides</button>
+      </form>
+      <p class="signup__msg" data-subscribe-msg role="status" hidden></p>
     </div>
 
     <div class="center" style="margin-top:3.5rem">
