@@ -88,20 +88,15 @@ none either, so there was nothing to pull from. The design works without them,
 but a real portrait in the "what actually happens" section would do more for
 bookings than anything else here.
 
-### 2. The "what actually happens" copy is mine, not hers
+### 2. The "what actually happens" copy on the home page is mine, not hers
+
 The section under `id="reiki"` in `index.html` — starting "reiki is energy
-work." — I wrote in her voice based on how she writes elsewhere. **She should
-rewrite it or approve it.** It's the one block on the page making claims about
-her practice that didn't come from her.
+work." — I wrote in her voice before she'd sent me anything. **Now that her
+own about-page writing exists, this block should be replaced with her words
+too.** The three pillar lines and the "first time?" steps are the same: my
+inference, not documented fact.
 
-Same for the three pillar lines (spirit guide / reiki master / death doula) and
-the "first time?" steps — those are my inference of her process, not documented
-fact. The step "i work through your window of time from wherever i am" in
-particular assumes how she runs a distance session. Confirm it.
-
-Everything else — all six service descriptions, prices, durations, the
-"alternative scheduling, payment, or trade options" line — is her exact wording,
-preserved.
+Her about page (`about.html`) is now entirely her own writing, verbatim.
 
 ### 2b. The writing page links out rather than mirroring
 
