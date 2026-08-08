@@ -658,6 +658,124 @@
     });
   });
 
+  /* ── visits ─────────────────────────────────────────────── */
+
+  function miniRows(host, rows, labelOf, nOf, subOf) {
+    host.textContent = '';
+    if (!rows.length) {
+      var p = document.createElement('p');
+      p.className = 'muted';
+      p.style.fontSize = '.85rem';
+      p.textContent = 'nothing yet.';
+      host.appendChild(p);
+      return;
+    }
+    var max = Math.max.apply(null, rows.map(nOf)) || 1;
+    rows.forEach(function (r) {
+      var row = document.createElement('div');
+      row.className = 'minirow';
+
+      // proportional fill behind the text, so each row reads as a share
+      var fill = document.createElement('div');
+      fill.className = 'minirow__fill';
+      fill.style.width = Math.round(100 * nOf(r) / max) + '%';
+
+      var lab = document.createElement('span');
+      lab.className = 'minirow__label';
+      lab.textContent = labelOf(r);
+
+      var n = document.createElement('span');
+      n.className = 'minirow__n';
+      n.textContent = nOf(r);
+      if (subOf) {
+        var s = document.createElement('small');
+        s.textContent = ' ' + subOf(r);
+        n.appendChild(s);
+      }
+
+      row.appendChild(fill); row.appendChild(lab); row.appendChild(n);
+      host.appendChild(row);
+    });
+  }
+
+  function delta(now, before) {
+    var el = document.createElement('span');
+    if (!before) {
+      el.className = 'stat__delta stat__delta--flat';
+      el.textContent = before === 0 && now > 0 ? 'first data' : '—';
+      return el;
+    }
+    var pct = Math.round(100 * (now - before) / before);
+    el.className = 'stat__delta stat__delta--' + (pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat');
+    el.textContent = (pct > 0 ? '▲ ' : pct < 0 ? '▼ ' : '') + Math.abs(pct) + '% vs previous';
+    return el;
+  }
+
+  var EVENT_LABELS = {
+    book_click: 'clicked through to book',
+    signup: 'joined the mailing list',
+    guide_open: 'opened a guide',
+    print_view: 'opened the printable version',
+    message_click: 'went to message her',
+  };
+
+  function loadStats() {
+    var days = el('statRange').value;
+    return api.get('/api/admin/stats?days=' + days).then(function (d) {
+      // totals
+      var box = el('statTotals');
+      box.textContent = '';
+      [['visitors', d.totals.visitors, d.previous.visitors],
+       ['page views', d.totals.views, d.previous.views],
+       ['book clicks', (d.events.find(function (e) { return e.name === 'book_click'; }) || {}).n || 0, null],
+       ['signups', d.signups, null]].forEach(function (t) {
+        var s = document.createElement('div');
+        s.className = 'stat';
+        var b = document.createElement('b');
+        b.textContent = t[1];
+        var lab = document.createElement('span');
+        lab.textContent = t[0];
+        s.appendChild(b); s.appendChild(lab);
+        if (t[2] !== null && t[2] !== undefined) s.appendChild(delta(t[1], t[2]));
+        box.appendChild(s);
+      });
+
+      // daily chart — fill in the gaps, or a quiet week looks like no data
+      var chart = el('statChart');
+      chart.textContent = '';
+      var byDay = {};
+      d.daily.forEach(function (r) { byDay[String(r.day).slice(0, 10)] = r.views; });
+      var max = Math.max.apply(null, d.daily.map(function (r) { return r.views; }).concat([1]));
+      for (var i = Number(days) - 1; i >= 0; i--) {
+        var dt = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+        var v = byDay[dt] || 0;
+        var bar = document.createElement('div');
+        bar.className = 'bar' + (v ? '' : ' bar--zero');
+        bar.style.height = v ? Math.max(3, Math.round(100 * v / max)) + '%' : '2px';
+        bar.title = dt + ' — ' + v + ' view' + (v === 1 ? '' : 's');
+        chart.appendChild(bar);
+      }
+
+      miniRows(el('statEvents'), d.events,
+        function (r) { return EVENT_LABELS[r.name] || r.name; },
+        function (r) { return r.n; },
+        function (r) { return '(' + r.people + ' people)'; });
+
+      miniRows(el('statRefs'), d.refs,
+        function (r) { return r.ref_host; }, function (r) { return r.views; });
+
+      miniRows(el('statPages'), d.pages,
+        function (r) { return r.path; },
+        function (r) { return r.views; },
+        function (r) { return '(' + r.visitors + ')'; });
+
+      miniRows(el('statDevices'), d.devices,
+        function (r) { return r.device; }, function (r) { return r.views; });
+    });
+  }
+
+  el('statRange').addEventListener('change', loadStats);
+
   /* ── boot ───────────────────────────────────────────────── */
 
   function refreshMail() {

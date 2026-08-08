@@ -200,3 +200,44 @@ code{ font-size:.9em; color:var(--gold-lit); }
   color:var(--bone-2); background:rgba(0,0,0,.35); border:1px solid var(--edge-soft);
   resize:vertical;
 }
+
+/* ── visits ────────────────────────────────────────────── */
+
+.stat__delta{ display:block; margin-top:.3rem; font-size:.68rem; letter-spacing:.06em; }
+.stat__delta--up{ color:var(--ok); }
+.stat__delta--down{ color:var(--ember); }
+.stat__delta--flat{ color:var(--bone-3); }
+
+.chart{
+  display:flex; align-items:flex-end; gap:2px; height:150px;
+  padding:.9rem 1rem; margin-bottom:2rem;
+  border:1px solid var(--edge-soft);
+  background:linear-gradient(165deg,var(--card-a),var(--card-b));
+  overflow-x:auto;
+}
+.bar{
+  flex:1 1 auto; min-width:5px; position:relative;
+  background:var(--gold); opacity:.55;
+  transition:opacity .2s;
+}
+.bar:hover{ opacity:1; }
+.bar--zero{ background:var(--edge-soft); opacity:1; min-height:2px; }
+
+.statcols{
+  display:grid; gap:1.6rem 2rem;
+  grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+}
+
+.minirows{ display:grid; gap:1px; margin-top:.6rem; }
+.minirow{
+  position:relative; display:flex; justify-content:space-between; gap:1rem;
+  padding:.55rem .7rem; font-size:.85rem; overflow:hidden;
+  background:rgba(0,0,0,.2);
+}
+/* the bar is behind the text, so the row reads as a value AND a proportion */
+.minirow__fill{
+  position:absolute; inset:0 auto 0 0; background:var(--gold); opacity:.13;
+}
+.minirow__label{ position:relative; color:var(--bone-2); word-break:break-all; }
+.minirow__n{ position:relative; color:var(--bone); white-space:nowrap; }
+.minirow__n small{ color:var(--bone-3); font-size:.85em; }

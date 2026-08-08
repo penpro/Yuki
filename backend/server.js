@@ -14,6 +14,7 @@ const publicRoutes = require('./routes/public');
 const adminRoutes = require('./routes/admin');
 const newsletterRoutes = require('./routes/newsletter');
 const mailRoutes = require('./routes/mail');
+const analytics = require('./routes/analytics');
 const mailer = require('./mailer');
 
 const app = express();
@@ -79,6 +80,7 @@ const apiLimiter = rateLimit({
 
 app.use(publicRoutes);
 app.use(newsletterRoutes);
+app.use(analytics.publicRoutes);
 
 /* ── admin ────────────────────────────────────────────────────────────── */
 
@@ -122,6 +124,7 @@ app.get('/admin', requireAuthPage, (req, res) => {
 app.use('/admin/assets', express.static(path.join(ADMIN_UI, 'assets'), { maxAge: '1h' }));
 app.use('/api/admin', apiLimiter, adminRoutes);
 app.use('/api/admin', apiLimiter, mailRoutes);
+app.use('/api/admin', apiLimiter, analytics.adminRoutes);
 
 /* ── errors ───────────────────────────────────────────────────────────── */
 

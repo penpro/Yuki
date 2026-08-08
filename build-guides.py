@@ -136,6 +136,7 @@ PAGE = u'''<!DOCTYPE html>
 </div>
 
 <script src="../assets/workbook.js"></script>
+<script src="../assets/stats.js"></script>
 </body>
 </html>
 '''

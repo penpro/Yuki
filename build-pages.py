@@ -173,6 +173,7 @@ FOOT = u'''</main>
 <script src="assets/main.js"></script>
 <script src="assets/subscribe.js"></script>
 <script src="assets/cta.js"></script>
+<script src="assets/stats.js"></script>
 </body>
 </html>
 '''
