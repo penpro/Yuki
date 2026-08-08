@@ -338,7 +338,7 @@ page('about.html', u"About — " + YUKI + u"'s Sacred Space",
       <p class="certgroup">my continuing education</p>
       <ul class="certs">
         <li class="cert">
-          <span class="cert__name">karuni ki reiki master</span>
+          <span class="cert__name">karuna ki reiki master</span>
           <span class="cert__by">aimee farrar</span>
           <span class="cert__when">september &rsquo;25</span>
         </li>
