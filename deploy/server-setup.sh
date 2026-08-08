@@ -94,8 +94,20 @@ fi
 # If a certificate already exists for this domain, put it straight back.
 if [ "$DOMAIN" != "_" ] && sudo test -d "/etc/letsencrypt/live/$DOMAIN"; then
   echo "==> Existing certificate found — reinstalling TLS into the new config"
-  sudo certbot install --cert-name "$DOMAIN" --nginx --non-interactive --redirect 2>&1 \
-    | grep -E "Deploying|Successfully|error" || true
+
+  # Run it plainly and check the exit status. An earlier version piped this
+  # through grep, which meant the pipeline reported grep's status instead of
+  # certbot's — so a failed TLS install printed a reassuring line and the
+  # script carried on. The site stayed up only because nginx was still
+  # running its last good config from memory; the file on disk was broken
+  # and a reboot would have taken the whole thing down.
+  if ! sudo certbot install --cert-name "$DOMAIN" --nginx --non-interactive --redirect; then
+    echo "" >&2
+    echo "CERTBOT FAILED TO INSTALL THE CERTIFICATE." >&2
+    echo "The site is HTTP-only until this is fixed, which also means the" >&2
+    echo "admin login would be exposed in the clear. Not continuing." >&2
+    exit 1
+  fi
 fi
 
 echo "==> Testing nginx config"
