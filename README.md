@@ -5,7 +5,7 @@ Open `index.html` in any browser and it works.
 
 ```
 index.html            home — sessions, the new life package, reiki, contact
-about.html            her bio and certifications (all placeholder prompts)
+about.html            her story and certifications — her own words, verbatim
 writing.html          her Medium posts, with links out to the full articles
 resources.html        index of the free guides
 brand.html            the brand sheet: marks, colour, type
