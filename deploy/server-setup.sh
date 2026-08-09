@@ -21,6 +21,17 @@ DOMAIN="${1:-_}"
 REPO_ROOT="${2:-$HOME/yuki}"
 WEB_ROOT="/var/www/yuki"
 
+# Additional hostnames the site should also answer on, space separated.
+# Used to keep an old address alive while moving to a new one, so links
+# already shared with people don't break the day the domain changes:
+#
+#   EXTRA_DOMAINS="www.yukis.space yukispace.duckdns.org" \
+#     ./deploy/server-setup.sh yukis.space
+#
+# All of them go into server_name and into the certificate.
+EXTRA_DOMAINS="${EXTRA_DOMAINS:-}"
+ALL_DOMAINS="$DOMAIN${EXTRA_DOMAINS:+ $EXTRA_DOMAINS}"
+
 if [ ! -f "$REPO_ROOT/index.html" ] || [ ! -d "$REPO_ROOT/deploy" ]; then
   echo "That doesn't look like the site checkout: $REPO_ROOT" >&2
   echo "Expected index.html and deploy/ inside it." >&2
@@ -76,7 +87,7 @@ sudo chmod 755 /var/www/yuki-uploads
 
 echo "==> Site config"
 sudo cp "$REPO_ROOT/deploy/nginx-yuki.conf" /etc/nginx/sites-available/yuki
-sudo sed -i "s/DOMAIN/$DOMAIN/g" /etc/nginx/sites-available/yuki
+sudo sed -i "s/DOMAIN/$ALL_DOMAINS/g" /etc/nginx/sites-available/yuki
 sudo ln -sf /etc/nginx/sites-available/yuki /etc/nginx/sites-enabled/yuki
 
 # The Ubuntu default site answers on port 80 and will shadow ours
@@ -92,20 +103,42 @@ fi
 # HTTP, which is the exact situation the admin gating exists to prevent.
 #
 # If a certificate already exists for this domain, put it straight back.
-if [ "$DOMAIN" != "_" ] && sudo test -d "/etc/letsencrypt/live/$DOMAIN"; then
-  echo "==> Existing certificate found — reinstalling TLS into the new config"
+if [ "$DOMAIN" != "_" ]; then
+  # Every certbot call below is run plainly and has its exit status checked.
+  # An earlier version piped certbot through grep, which meant the pipeline
+  # reported grep's status instead of certbot's — so a failed TLS install
+  # printed a reassuring line and the script carried on. The site stayed up
+  # only because nginx was still running its last good config from memory;
+  # the file on disk was broken and a reboot would have taken it all down.
 
-  # Run it plainly and check the exit status. An earlier version piped this
-  # through grep, which meant the pipeline reported grep's status instead of
-  # certbot's — so a failed TLS install printed a reassuring line and the
-  # script carried on. The site stayed up only because nginx was still
-  # running its last good config from memory; the file on disk was broken
-  # and a reboot would have taken the whole thing down.
-  if ! sudo certbot install --cert-name "$DOMAIN" --nginx --non-interactive --redirect; then
+  CERT_ARGS=""
+  for d in $ALL_DOMAINS; do CERT_ARGS="$CERT_ARGS -d $d"; done
+
+  if sudo test -d "/etc/letsencrypt/live/$DOMAIN"; then
+    echo "==> Existing certificate found — reinstalling TLS into the new config"
+    CERTBOT_OK=0
+    sudo certbot install --cert-name "$DOMAIN" --nginx --non-interactive --redirect && CERTBOT_OK=1
+
+  elif [ -n "${CERTBOT_EMAIL:-}" ]; then
+    # No certificate yet. Obtain one covering every hostname in one go, so a
+    # visitor arriving on any of them gets a valid certificate rather than a
+    # browser warning.
+    echo "==> No certificate yet — requesting one for:$CERT_ARGS"
+    CERTBOT_OK=0
+    sudo certbot --nginx $CERT_ARGS --cert-name "$DOMAIN" \
+      --non-interactive --agree-tos --email "$CERTBOT_EMAIL" --redirect && CERTBOT_OK=1
+
+  else
+    echo "==> No certificate and no CERTBOT_EMAIL set — leaving HTTP only."
+    echo "    Run again with CERTBOT_EMAIL=you@example.com to request one."
+    CERTBOT_OK=1
+  fi
+
+  if [ "$CERTBOT_OK" != "1" ]; then
     echo "" >&2
-    echo "CERTBOT FAILED TO INSTALL THE CERTIFICATE." >&2
-    echo "The site is HTTP-only until this is fixed, which also means the" >&2
-    echo "admin login would be exposed in the clear. Not continuing." >&2
+    echo "CERTBOT FAILED." >&2
+    echo "The site would be HTTP-only, which also means the admin login" >&2
+    echo "would be exposed in the clear. Not continuing." >&2
     exit 1
   fi
 fi
