@@ -14,3 +14,9 @@ medium-feed.xml
 # backend
 backend/node_modules/
 backend/.env
+
+# latex build artefacts
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc

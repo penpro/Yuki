@@ -1,0 +1,582 @@
+% ============================================================
+%  Yuki's Sacred Space - How your website works
+%  Build:  pdflatex website-guide.tex   (run twice for the ToC)
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.4cm,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+% ---- brand colours (from assets/styles.css) ----
+\definecolor{ink}{HTML}{191317}
+\definecolor{gold}{HTML}{A8811F}   % darkened for print contrast on white
+\definecolor{plum}{HTML}{8A4670}
+\definecolor{soft}{HTML}{6E615D}
+\definecolor{rule}{HTML}{D8D0CC}
+
+\hypersetup{colorlinks=true, linkcolor=plum, urlcolor=plum}
+
+% ---- headings ----
+\titleformat{\section}{\Large\bfseries\color{ink}}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{ink}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.7em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.5em}
+
+\newcommand{\parttitle}[2]{%
+  \clearpage
+  \noindent{\color{gold}\rule{\linewidth}{2pt}}\par\vspace{0.5em}
+  \noindent{\Huge\bfseries\color{ink} #1}\par\vspace{0.3em}
+  \noindent{\large\color{soft} #2}\par\vspace{0.4em}
+  \noindent{\color{gold}\rule{\linewidth}{0.6pt}}\par\vspace{1.2em}
+}
+
+% ---- a simple callout: gold rule on the left, no extra packages ----
+\newenvironment{callout}
+  {\par\medskip\noindent\begin{list}{}{%
+     \setlength{\leftmargin}{1.2em}\setlength{\rightmargin}{0pt}%
+     \setlength{\labelwidth}{0pt}\setlength{\itemindent}{0pt}}%
+   \item[]\color{ink}\hspace{-1.2em}%
+   \makebox[0pt][l]{\raisebox{-0.35\baselineskip}[0pt][0pt]{%
+     \textcolor{gold}{\rule{2pt}{1.15\baselineskip}}}}\hspace{1.2em}\ignorespaces}
+  {\end{list}\medskip}
+
+\newcommand{\lead}[1]{\textbf{\color{ink}#1}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+
+\setlist{itemsep=2pt, parsep=0pt, topsep=4pt}
+
+% ---- header / footer ----
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\small\color{soft} Yūki's Sacred Space}
+\fancyhead[R]{\small\color{soft} How your website works}
+\fancyfoot[C]{\small\color{soft}\thepage}
+
+\begin{document}
+
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{4cm}
+
+{\color{gold}\rule{6cm}{1pt}}\par\vspace{1.4cm}
+
+{\Huge\bfseries\color{ink} How your website works}\par\vspace{0.8cm}
+{\LARGE\color{soft} Yūki's Sacred Space}\par\vspace{2.2cm}
+
+{\large A guide for you --- and for whoever\\[0.3em] looks after it next}\par
+
+\vspace{2.5cm}
+{\color{gold}\rule{6cm}{1pt}}\par
+
+\vfill
+{\color{soft}\small
+\href{https://yukis.space}{yukis.space}\par\vspace{0.3em}
+Last updated August 2026}
+\end{titlepage}
+
+\tableofcontents
+
+% ============================================================
+\parttitle{Part one}{Using your website --- no technical knowledge needed}
+
+\section{What you have}
+
+Your site lives at \href{https://yukis.space}{\textbf{yukis.space}}. It also
+answers on \code{www.yukis.space} and on the older
+\code{yukispace.duckdns.org}, so any link already shared with anyone still
+works. All of them are secure (the padlock in the browser).
+
+The site has six public pages: the home page, your about page, your writing,
+the free guides, a brand page, and the five printable workbooks. Booking and
+payment are still handled entirely by Square --- every ``book'' button opens
+your existing Square page. \textbf{Nothing about your Square setup changed},
+and money never passes through this website.
+
+\begin{callout}
+\lead{The one thing to remember:} the website advertises your prices, Square
+charges them. If you change one, change the other, or someone books at a price
+you are not charging.
+\end{callout}
+
+\section{Signing in}
+
+Go to \href{https://yukis.space/admin}{\textbf{yukis.space/admin}} and sign in
+with your email and password. If you have not signed in, it will send you to
+the login screen automatically.
+
+The admin only exists over a secure connection. If you ever type \code{http://}
+instead of \code{https://} it will look like the page does not exist --- that
+is deliberate, not a fault. Use the link above and it will always be right.
+
+\begin{callout}
+\lead{Changing your password} is the one thing the admin cannot do yet. Ask
+whoever looks after the site and it takes about a minute. Worth doing, since
+the password you were given was generated for you rather than chosen by you.
+\end{callout}
+
+\section{The admin, tab by tab}
+
+\subsection{Resources}
+
+This is the list of free guides shown on your \emph{resources} page.
+
+Each entry has a title, a category (like ``cbt workbook''), a short
+description, and a link. \textbf{Nothing appears on the site until you tick
+``published''} --- so you can write something, leave it as a draft, and come
+back to it.
+
+\lead{Sort order} controls the order they appear in. Lower numbers come first,
+and they go up in tens so you can slot something in between later without
+renumbering everything.
+
+You can also upload a file (a PDF or an image) instead of linking to a page.
+Use that if you write a worksheet in Word and want to hand it out as a PDF.
+
+The five workbooks that already exist are ordinary web pages, not database
+entries you can rewrite here. Editing the words inside a workbook needs a
+developer; changing how it is \emph{listed} does not.
+
+\subsection{Testimonials}
+
+Quotes from people you have worked with, shown on your home page.
+
+Same rule: \textbf{nothing shows until you tick ``published''}, which is
+deliberate. Quoting someone by accident is the one mistake here that cannot be
+undone by editing a row afterwards.
+
+\begin{callout}
+\lead{Two things to be careful about.}
+
+\emph{Permission.} A public Facebook review is already public. A private
+message is not. Ask before quoting a DM, and ask what name they want on it.
+
+\emph{Health claims.} Be wary of publishing a quote that says you cured,
+reversed, or treated a medical condition --- even though the person wrote it
+themselves, the risk lands on your business, not theirs. Quotes about how
+someone \emph{felt} (slept better, calmer, clearer) are fine. Quotes claiming
+a specific medical outcome are the ones to leave unpublished. There is a
+disclaimer under the testimonials on your site, and it helps, but it does not
+cover everything.
+\end{callout}
+
+\subsection{Mailing list}
+
+Everyone who has signed up through your site.
+
+People land here as \textbf{pending} until they click the confirmation link in
+their email. Only \textbf{confirmed} people ever receive a newsletter --- that
+is what keeps you out of spam folders.
+
+You can search by email, name or notes, and filter by status, by where they
+signed up, and by date. \lead{Everything you do next respects that filter:}
+
+\begin{itemize}
+  \item \lead{Copy addresses} puts the matching emails on your clipboard, so
+        you can paste them into any other mail program.
+  \item \lead{Download CSV} gives you a spreadsheet of the same list.
+  \item \lead{Add someone} is for people who gave you their email in person.
+        They go straight in as confirmed, because you already have consent.
+\end{itemize}
+
+People who unsubscribe stay in the list marked ``unsubscribed'' rather than
+being deleted. That is on purpose --- it is what stops them being added again
+by accident later.
+
+\subsection{Mail blast}
+
+Where you write and send a newsletter.
+
+The top section, \emph{ready to write about}, fills itself in. Every time you
+publish a testimonial or a guide, or post something new on Medium, it appears
+here as a suggestion. Click \textbf{write newsletter} and it drafts one for you
+--- subject, body and button already filled in. \textbf{Then edit it into your
+own words}, because the draft is a starting point, not your voice.
+
+Before sending, always:
+
+\begin{enumerate}
+  \item \lead{Preview} --- opens exactly what people will receive.
+  \item \lead{Test send} --- sends one copy to any address you choose. Send it
+        to yourself and read it on your phone.
+  \item \lead{Send to everyone} --- goes to everyone confirmed.
+\end{enumerate}
+
+\begin{callout}
+\lead{Sending cannot be undone.} There is no recall. Test send first, every
+time. Once it has gone out, that newsletter locks and cannot be edited --- if
+you need to change it, make a new one.
+\end{callout}
+
+\subsection{Visits}
+
+How many people came, what they looked at, and what they did.
+
+The four numbers at the top are visitors, page views, book clicks and signups,
+each compared against the previous period.
+
+\lead{Book clicks is the number to watch.} Two hundred visits with no book
+clicks means very different things from forty visits with six. Visits tell you
+whether people are arriving; book clicks tell you whether the site is
+convincing them.
+
+\lead{Where they came from} becomes useful the day you post the link to
+Facebook --- you will see the traffic arrive and know it worked.
+
+Nothing here tracks individual people. There are no cookies, nothing is sent to
+Google, and no one can be identified or followed from one day to the next.
+Anyone browsing with ``do not track'' turned on is not counted at all. That is
+also why your site does not need one of those irritating cookie banners.
+
+\section{What you can change yourself}
+
+\begin{longtable}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+\toprule
+\textbf{You can do this in the admin} & \textbf{This needs a developer} \\
+\midrule
+\endhead
+Add, edit, reorder and publish resources & The words inside a workbook \\
+Add, publish and unpublish testimonials & Your prices \\
+Upload PDFs and images & Your about page and its wording \\
+Add people to the mailing list & The session descriptions \\
+Write, preview, test and send newsletters & Page layout, colours, fonts \\
+Watch your visitor numbers & Adding a new page \\
+\bottomrule
+\end{longtable}
+
+Your prices, your about page and your session descriptions live in the website
+files rather than the admin. That is a deliberate trade: those change rarely,
+and keeping them out of the database means there is far less that can break.
+
+\section{If something looks wrong}
+
+\begin{itemize}
+  \item \lead{The admin will not load.} Check you are on \code{https://} and
+        that the address is exactly \code{yukis.space/admin}.
+  \item \lead{You changed something and the site looks the same.} Refresh the
+        page properly (Ctrl+F5, or Cmd+Shift+R on a Mac).
+  \item \lead{The resources page shows the old list.} The site keeps working
+        from a saved copy if the database is briefly unavailable, so this
+        usually fixes itself. If it persists, it needs a developer.
+  \item \lead{Someone says an email went to spam.} Expected occasionally while
+        sending from a Gmail address. Part two explains what fixes it properly.
+  \item \lead{Anything else.} Note exactly what you clicked and what happened,
+        and hand part two of this document to whoever helps you.
+\end{itemize}
+
+% ============================================================
+\parttitle{Part two}{Technical handover --- for a developer}
+
+This section assumes the reader has never seen the project. It is written so
+someone can take it over without needing to ask questions.
+
+\section{Architecture at a glance}
+
+A mostly-static marketing site on a single EC2 instance, with a small Node
+application behind nginx providing an admin portal, a database-backed
+resources page, a mailing list and first-party analytics.
+
+\begin{longtable}{@{}p{0.28\linewidth}p{0.66\linewidth}@{}}
+\toprule
+\textbf{Layer} & \textbf{What it is} \\
+\midrule
+\endhead
+Static site      & Hand-written HTML/CSS/JS, no framework, no build step for the markup \\
+Page generation  & Three Python scripts write the sub-pages and workbooks \\
+Web server       & nginx --- serves static files, proxies a handful of routes \\
+Application      & Node 22 + Express under PM2, bound to loopback only \\
+Database         & MySQL 8.4 \\
+Payments         & Square, entirely external. No card data ever touches this server \\
+\bottomrule
+\end{longtable}
+
+\section{Access a new developer needs}
+
+\begin{longtable}{@{}p{0.30\linewidth}p{0.64\linewidth}@{}}
+\toprule
+\textbf{Thing} & \textbf{Detail} \\
+\midrule
+\endhead
+AWS account      & Owns the EC2 instance, Elastic IP and the Route 53 hosted zone \\
+SSH key          & \code{Yukis.pem}. On Windows, permissions are set with
+                   \code{icacls}, not \code{chmod} --- see below \\
+GitHub           & \url{https://github.com/penpro/Yuki} (public) \\
+Domain           & \code{yukis.space}, registered in Route 53 \\
+Gmail account    & \code{yukissacredspace@gmail.com} --- sends the site's email \\
+Square           & Hers. Nothing here integrates with it beyond outbound links \\
+\bottomrule
+\end{longtable}
+
+\section{AWS}
+
+\begin{longtable}{@{}p{0.30\linewidth}p{0.64\linewidth}@{}}
+\toprule
+Instance      & \code{i-0f7d9894c082e9a49}, \code{t3.micro} \\
+Region / AZ   & \code{us-east-2b} \\
+OS            & Ubuntu 26.04 LTS \\
+Resources     & 2 vCPU, 908\,MB RAM, 6.7\,GB disk \\
+Elastic IP    & \code{52.14.87.6} --- static, must stay associated \\
+Security group& Inbound 22 (SSH), 80, 443 only \\
+\bottomrule
+\end{longtable}
+
+\begin{callout}
+\lead{The Elastic IP is load-bearing.} A plain EC2 public IP changes every time
+the instance stops and starts, and released addresses are reassigned to other
+customers within hours. If it is ever detached, DNS ends up pointing at
+somebody else's server. Leave it attached; AWS bills for unattached ones
+anyway.
+\end{callout}
+
+\lead{SSH:}
+\begin{quote}\code{ssh -i \textasciitilde/.ssh/Yukis.pem ubuntu@52.14.87.6}\end{quote}
+
+On Windows, \code{chmod 600} on the key does nothing useful --- OpenSSH reads
+NTFS ACLs, not POSIX bits, and will still reject the key. Use:
+\begin{quote}
+\code{icacls key.pem /inheritance:r}\\
+\code{icacls key.pem /grant:r "\%USERNAME\%:(R)"}
+\end{quote}
+
+\section{Domain and DNS}
+
+\code{yukis.space} is registered in Route 53, in the same AWS account. Its
+hosted zone holds two A records --- the root and \code{www} --- both pointing
+at \code{52.14.87.6}.
+
+\code{yukispace.duckdns.org} is a free dynamic-DNS name kept alive so earlier
+links do not break. It is on the same certificate and can be retired whenever.
+
+\begin{callout}
+\lead{If the domain is transferred to another AWS account,} the hosted zone
+does \emph{not} move with it. Recreate the zone and both A records on the
+receiving account, and confirm resolution before letting the old zone go.
+\end{callout}
+
+\section{The server}
+
+\begin{longtable}{@{}p{0.34\linewidth}p{0.60\linewidth}@{}}
+\toprule
+Repo checkout        & \code{/home/ubuntu/yuki} \\
+Web root             & \code{/var/www/yuki} \\
+Uploads              & \code{/var/www/yuki-uploads} (outside the web root) \\
+nginx site           & \code{/etc/nginx/sites-available/yuki} \\
+nginx snippets       & \code{/etc/nginx/snippets/yuki-*.conf} \\
+App process          & PM2, \code{yuki-backend}, \code{127.0.0.1:3001} \\
+App config           & \code{/home/ubuntu/yuki/backend/.env} (0600, never committed) \\
+Certificates         & Let's Encrypt, cert name \code{yukis.space}, auto-renewing \\
+Hardening            & ufw, fail2ban (sshd jail), unattended security upgrades \\
+Swap                 & 1.5\,GB file, \code{vm.swappiness=10} \\
+\bottomrule
+\end{longtable}
+
+\begin{callout}
+\lead{Why there is swap and a tuned MySQL.} The instance has under 1\,GB of
+RAM and shipped with no swap. MySQL 8.4's defaults assume far more ---
+\code{performance\_schema} alone reserves over 100\,MB. Installed untuned,
+\code{mysqld} gets OOM-killed days later under load, which presents as a
+mystery crash. \code{/etc/mysql/mysql.conf.d/zz-low-memory.cnf} caps the buffer
+pool at 96\,MB and disables \code{performance\_schema}. Raise these only if the
+instance is resized.
+\end{callout}
+
+\section{Repository layout}
+
+\begin{longtable}{@{}p{0.34\linewidth}p{0.60\linewidth}@{}}
+\toprule
+\code{index.html}        & Home page. \textbf{Hand-written, not generated} \\
+\code{build-pages.py}    & Generates about / writing / resources / brand \\
+\code{build-guides.py}   & Generates the five workbooks \\
+\code{build-brand.py}    & Writes the logo SVGs \\
+\code{assets/}           & CSS and JS. Design tokens are at the top of \code{styles.css} \\
+\code{backend/}          & Express app. \textbf{Never deployed to the web root} \\
+\code{deploy/}           & All ops scripts and nginx config \\
+\code{guides/}, \code{brand/} & Generated output, committed \\
+\bottomrule
+\end{longtable}
+
+Editing a generated page by hand works, but re-running its script overwrites
+it. Change the script instead.
+
+\section{Deploying}
+
+Everything is push-then-pull. Nothing is built or uploaded from a workstation.
+
+\begin{enumerate}
+  \item Commit and push to GitHub.
+  \item On the server: \code{cd \textasciitilde/yuki \&\& ./deploy/pull-and-deploy.sh}
+\end{enumerate}
+
+\begin{longtable}{@{}p{0.36\linewidth}p{0.58\linewidth}@{}}
+\toprule
+\code{pull-and-deploy.sh}  & Everyday: git pull, then publish static files \\
+\code{deploy.sh}           & Publish only \\
+\code{deploy-backend.sh}   & Migrations, npm install, PM2 restart, health check \\
+\code{server-setup.sh}     & nginx, TLS, snippets. Idempotent \\
+\code{provision-stack.sh}  & One-time: swap, MySQL, Node, PM2, hardening \\
+\code{db/migrate.sh}       & Applies \code{db/migrations/*.sql}, tracked in \code{schema\_migrations} \\
+\bottomrule
+\end{longtable}
+
+Changing the domain or the nginx config:
+\begin{quote}
+\code{EXTRA\_DOMAINS="www.yukis.space yukispace.duckdns.org" \textbackslash}\\
+\code{CERTBOT\_EMAIL="you@example.com" ./deploy/server-setup.sh yukis.space}
+\end{quote}
+
+\section{Database}
+
+Schema \code{yuki}. Migrations are numbered and tracked; never edit one that
+has already run --- write a new one.
+
+\begin{longtable}{@{}p{0.30\linewidth}p{0.64\linewidth}@{}}
+\toprule
+\code{admin\_users}     & bcrypt hashes only. Created by \code{backend/create-admin.js} \\
+\code{sessions}         & Managed by express-mysql-session \\
+\code{resources}        & The catalogue behind \code{/resources} \\
+\code{testimonials}     & Home page quotes \\
+\code{subscribers}      & Mailing list, with confirm and unsubscribe tokens \\
+\code{campaigns}, \code{campaign\_sends} & Newsletters and per-recipient delivery \\
+\code{page\_views}, \code{events} & Analytics \\
+\bottomrule
+\end{longtable}
+
+Two database users: MySQL \code{root} via unix socket (used by migrations, no
+password anywhere), and \code{yuki\_app} over TCP with rights scoped to this
+schema and no \code{DROP} or \code{GRANT}. The application uses the latter.
+
+\section{Email}
+
+Currently sends through Gmail SMTP as
+\code{yukissacredspace@gmail.com}, authenticated with a Google \emph{app
+password} (which requires 2-Step Verification on that account).
+
+\begin{callout}
+\lead{This is a deliberate stopgap, not the end state.} It suits a mailing
+list of a few people. It caps at roughly 500 messages a day, mail arrives from
+a \code{gmail.com} address rather than the domain, and any spam complaints
+land against a personal Google account.
+
+Before any real list-building, move to a transactional relay (Brevo, Mailgun,
+Postmark or SES), send from \code{hello@yukis.space}, and add \textbf{SPF,
+DKIM and DMARC} records to the Route 53 zone. Without those three records,
+Gmail and Outlook treat the sender as unproven regardless of content. Only
+\code{SMTP\_*} and \code{MAIL\_*} values in \code{.env} need to change.
+\end{callout}
+
+Confirm and unsubscribe links are built from \code{APP\_BASE\_URL}. If the
+domain ever changes, that must change with it, or every link in every email
+points at the old host.
+
+\section{Deliberate decisions --- please do not undo these}
+
+\begin{itemize}
+  \item \lead{The admin only exists when a domain is configured.} nginx pulls
+        the admin routes in through a wildcard include that matches no file
+        until \code{server-setup.sh} runs with a real domain. That is the same
+        precondition as a certificate, so a login form can never be served
+        over plain HTTP.
+  \item \lead{Node binds \code{127.0.0.1} only.} The port stays unreachable
+        even if a security group rule is opened by mistake.
+  \item \lead{Login gives one generic error} and burns an equivalent bcrypt
+        compare when the account does not exist, so neither the message nor
+        the response time reveals which addresses are real.
+  \item \lead{Uploads use an extension allowlist and server-generated random
+        filenames.} The client-supplied name never reaches disk.
+  \item \lead{Unsubscribe is the least protected route on the site} --- no
+        auth, one click, GET or POST. Making opting out harder than opting in
+        is what produces spam complaints.
+  \item \lead{Analytics stores no IP or user-agent.} Visitors are counted by a
+        daily-rotating one-way hash. This is why no cookie banner is required.
+  \item \lead{Content never depends on JavaScript.} A \code{<noscript>} block
+        neutralises the scroll-reveal CSS; without it a failed script load
+        renders a blank page.
+\end{itemize}
+
+\section{Traps that have already caught someone}
+
+Each of these cost real debugging time. They are listed so they do not have to
+be rediscovered.
+
+\begin{enumerate}
+  \item \lead{\code{server-setup.sh} overwrites certbot's config.} Copying the
+        repo's nginx file over the live one discards the 443 block. The script
+        now reinstalls TLS automatically --- keep that behaviour.
+  \item \lead{Never pipe certbot through \code{grep}.} The pipeline reports
+        grep's exit status, so a failed certificate install looks like a
+        success. This once left a broken config on disk while nginx served the
+        last good one from memory --- working until the next reboot.
+  \item \lead{Duplicate nginx directives fail \code{nginx -t} outright.}
+        Setting \code{proxy\_connect\_timeout} in a location that also
+        includes the proxy snippet breaks the whole config.
+  \item \lead{\code{package-lock.json} must stay committed.} \code{npm ci}
+        installs from it and hard-fails when it drifts, which aborts the
+        deploy before the PM2 restart and leaves old code running.
+  \item \lead{\code{backend/} must stay excluded from the web root.} It was
+        briefly rsynced there, making server source downloadable.
+  \item \lead{\code{/assets/} is served \code{no-cache} on purpose.} The
+        filenames carry no content hash, so a long cache meant fixes took a
+        day to reach returning visitors. Add hashed filenames before caching
+        aggressively.
+  \item \lead{Square booking links cannot be deep-linked.} Their buttons are
+        JavaScript-driven with no plain URLs, so every book button points at
+        the appointments list. Per-service URLs must come from her Square
+        dashboard.
+\end{enumerate}
+
+\section{Running costs}
+
+\begin{longtable}{@{}p{0.52\linewidth}r@{}}
+\toprule
+EC2 \code{t3.micro} (outside free tier) & \textasciitilde\$7.50 / month \\
+Public IPv4 address                     & \textasciitilde\$3.60 / month \\
+Route 53 hosted zone                    & \$0.50 / month \\
+\code{yukis.space} registration         & annual, varies \\
+TLS certificate                         & free \\
+Email (current setup)                   & free \\
+\midrule
+\textbf{Approximate total}              & \textbf{\textasciitilde\$12 / month} \\
+\bottomrule
+\end{longtable}
+
+\section{Handover checklist}
+
+If the project passes to someone else, rotate everything --- previous access
+should stop working.
+
+\begin{enumerate}
+  \item Create a new EC2 key pair and replace \code{authorized\_keys};
+        retire \code{Yukis.pem}.
+  \item Rotate \code{SESSION\_SECRET} in \code{.env} (this signs out everyone).
+  \item Rotate the \code{yuki\_app} MySQL password in both MySQL and
+        \code{.env}.
+  \item Revoke the Google app password and issue a new one.
+  \item Reset the admin password with \code{backend/create-admin.js}.
+  \item Transfer or share the AWS account, the Route 53 domain and the GitHub
+        repository.
+  \item Confirm the Elastic IP is still associated, and that certificate
+        auto-renewal is running (\code{systemctl list-timers | grep certbot}).
+\end{enumerate}
+
+\vspace{1.5em}
+\noindent{\color{gold}\rule{\linewidth}{0.6pt}}
+\vspace{0.6em}
+
+\noindent\small\color{soft}
+The site is deliberately boring to run: static files, one small application,
+one database, and scripts that are safe to re-run. Almost everything can be
+fixed by pushing to GitHub and running \code{pull-and-deploy.sh}.
+
+\end{document}
