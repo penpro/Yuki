@@ -1,11 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32" role="img" aria-label="Yuki's Sacred Space mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512" role="img" aria-label="Yuki's Sacred Space">
   <title>Yūki's Sacred Space</title>
-  <rect width="48" height="48" fill="#191317"/>
-  <circle cx="24" cy="24" r="21" fill="none" stroke="#D4A94A" stroke-width="1" opacity="1"/>
-  <circle cx="24" cy="24" r="14.5" fill="none" stroke="#D4A94A" stroke-width="1" opacity=".45"/>
-  <path d="M29.5 13.4a12 12 0 1 0 0 21.2 13.6 13.6 0 0 1 0-21.2Z" fill="#D4A94A" opacity="1"/>
-  <circle cx="24" cy="1.9" r="1.9" fill="#D4A94A" opacity="1"/>
-  <circle cx="24" cy="46.1" r="1.5" fill="#D4A94A" opacity="1"/>
-  <circle cx="1.9" cy="24" r="1.5" fill="#D4A94A" opacity="1"/>
-  <circle cx="46.1" cy="24" r="1.5" fill="#D4A94A" opacity="1"/>
+
+  <!--
+    A deliberately bolder cut of the site mark, for small sizes.
+
+    The full sigil has 1px rings that disappear entirely below about 32px and
+    turn to grey mush at 16px, which is where a favicon actually lives. This
+    version drops them and keeps only the crescent, sized to fill the frame.
+    Built from two circles and a mask so the inner edge stays a true arc at
+    any resolution.
+
+    Source for favicon.ico, favicon-32.png, apple-touch-icon.png and the
+    PWA icons. Regenerate them from this file, not from mark-gold.svg.
+  -->
+
+  <mask id="crescent">
+    <rect width="64" height="64" fill="black"/>
+    <circle cx="30" cy="32" r="21" fill="white"/>
+    <circle cx="41" cy="27" r="18" fill="black"/>
+  </mask>
+
+  <rect width="64" height="64" fill="#191317"/>
+  <circle cx="30" cy="32" r="21" fill="#D4A94A" mask="url(#crescent)"/>
+
+  <!-- one cardinal point, kept because it reads as intent rather than noise
+       even when it collapses to a single pixel -->
+  <circle cx="30" cy="6" r="3" fill="#D4A94A"/>
 </svg>

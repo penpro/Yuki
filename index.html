@@ -22,6 +22,65 @@
      never runs — blocked, failed to load, ancient browser — the entire page
      would otherwise stay invisible. Content must never depend on script. -->
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<!--
+  Structured data. Deliberately conservative:
+
+  * Organization rather than LocalBusiness/ProfessionalService, because she
+    has no physical premises. Local-business markup without an address is
+    both a validator warning and a misleading signal for a practice that is
+    entirely remote.
+  * No aggregateRating. She has real testimonials, but none carry a numeric
+    score, and inventing one to win a star rating in search results is
+    exactly the kind of thing that earns a manual penalty.
+  * No Offer/price markup yet. Prices here do not currently match Square,
+    and publishing prices that differ from checkout is worse than publishing
+    none. Add offers once the two agree.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Yūki's Sacred Space",
+  "alternateName": "Yukis Sacred Space",
+  "url": "https://yukis.space",
+  "logo": "https://yukis.space/brand/icon-512.png",
+  "image": "https://yukis.space/brand/og-image.png",
+  "description": "Distance reiki, spirit guidance and death doula work by Wisteria Yūki. Sessions from fifteen minutes to a full hour, sent anywhere.",
+  "areaServed": { "@type": "Place", "name": "Worldwide" },
+  "knowsLanguage": "en",
+  "founder": {
+    "@type": "Person",
+    "name": "Wisteria Yūki",
+    "jobTitle": "Reiki Master, Spirit Guide, Death Doula",
+    "url": "https://yukis.space/about",
+    "sameAs": [
+      "https://www.facebook.com/wistyuki",
+      "https://medium.com/@wistyuki"
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/wistyuki",
+    "https://medium.com/@wistyuki",
+    "https://yukisacredspace.square.site"
+  ]
+}
+</script>
+
+<!-- SEO:START -->
+<link rel="canonical" href="https://yukis.space/">
+
+<link rel="icon" href="/brand/favicon.ico" sizes="any">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:url" content="https://yukis.space/">
+<meta property="og:image" content="https://yukis.space/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yuki's Sacred Space - distance reiki, spirit guidance and death doula work, sent anywhere">
+<meta name="twitter:image" content="https://yukis.space/brand/og-image.png">
+<!-- SEO:END -->
 </head>
 <body>
 

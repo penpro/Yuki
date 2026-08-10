@@ -39,9 +39,7 @@ for name, v in VARIANTS.items():
     io.open(p, 'w', encoding='utf-8').write(MARK.format(**v))
     print('wrote %-34s' % p)
 
-# favicon: the mark on the site's background, sized for a browser tab
-FAV = MARK.format(ring='#D4A94A', fill='#D4A94A', ro='1', ri='.45', mo='1', do='1', px=32)
-FAV = FAV.replace('<circle cx="24" cy="24" r="21"',
-                  '<rect width="48" height="48" fill="#191317"/>\n  <circle cx="24" cy="24" r="21"')
-io.open(os.path.join(OUT, 'favicon.svg'), 'w', encoding='utf-8').write(FAV)
-print('wrote %-34s' % os.path.join(OUT, 'favicon.svg'))
+# favicon.svg is NOT generated here. The full mark's 1px rings vanish below
+# ~32px, which is exactly where a favicon lives, so it uses a deliberately
+# bolder cut kept as a hand-authored file. See brand/favicon.svg, and derive
+# the .ico / .png sizes from it rather than from mark-gold.svg.

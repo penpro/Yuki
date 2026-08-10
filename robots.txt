@@ -1,0 +1,19 @@
+# yukis.space
+
+User-agent: *
+Allow: /
+
+# The admin is behind a login, but there is no reason for it to appear in
+# search results at all. The pages themselves also send noindex.
+Disallow: /admin
+Disallow: /api/
+
+# Signup confirmation and opt-out pages. Real people reach these from a link
+# in an email; a crawler following them would be meaningless.
+Disallow: /confirm
+Disallow: /unsubscribe
+
+# Uploaded files are linked from the resources page where they matter.
+Disallow: /uploads/
+
+Sitemap: https://yukis.space/sitemap.xml
