@@ -85,6 +85,25 @@ sudo mkdir -p /var/www/yuki-uploads
 sudo chown -R "$USER":www-data /var/www/yuki-uploads
 sudo chmod 755 /var/www/yuki-uploads
 
+# If a certificate already exists and no EXTRA_DOMAINS was given, adopt the
+# hostname list from the certificate itself.
+#
+# Without this, re-running the script with just the primary domain silently
+# narrows server_name to one host while the certificate still covers three.
+# certbot then refuses to install ("could not find a matching server block for
+# www..."), which correctly aborts the run — but the cause is entirely
+# non-obvious, and it makes correct operation depend on the operator
+# remembering an environment variable. Deriving it means the config cannot
+# drift from what the certificate actually covers.
+if [ "$DOMAIN" != "_" ] && [ -z "$EXTRA_DOMAINS" ] && sudo test -d "/etc/letsencrypt/live/$DOMAIN"; then
+  CERT_DOMAINS="$(sudo certbot certificates --cert-name "$DOMAIN" 2>/dev/null \
+                  | awk -F': ' '/Domains:/{print $2; exit}' | xargs || true)"
+  if [ -n "$CERT_DOMAINS" ]; then
+    ALL_DOMAINS="$CERT_DOMAINS"
+    echo "==> Adopting hostnames from the existing certificate: $ALL_DOMAINS"
+  fi
+fi
+
 echo "==> Site config"
 sudo cp "$REPO_ROOT/deploy/nginx-yuki.conf" /etc/nginx/sites-available/yuki
 sudo sed -i "s/DOMAIN/$ALL_DOMAINS/g" /etc/nginx/sites-available/yuki
