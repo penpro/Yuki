@@ -333,6 +333,17 @@ Security group& Inbound 22 (SSH), 80, 443 only \\
 \end{longtable}
 
 \begin{callout}
+\lead{Everything is in \code{us-east-2} (Ohio).} Worth reading twice, because
+the AWS console opens in whatever region it used last --- often
+\code{us-east-1} --- and in the wrong region the EC2 instance, the Elastic IP
+and the security group all simply appear not to exist. There is no error
+message; the lists are just empty. Set the region picker in the top right to
+\textbf{US East (Ohio)} before concluding anything is missing.
+
+Route 53 is the exception: it is a global service and has no region picker.
+\end{callout}
+
+\begin{callout}
 \lead{The Elastic IP is load-bearing.} A plain EC2 public IP changes every time
 the instance stops and starts, and released addresses are reassigned to other
 customers within hours. If it is ever detached, DNS ends up pointing at

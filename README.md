@@ -189,6 +189,26 @@ live in HTML — turning it into a file would mean converting the letters to
 outlines in a vector editor, which is worth doing only if she ever needs it for
 signage or merch.
 
+## Where it runs
+
+Everything AWS is in **`us-east-2` (Ohio)** — EC2 instance, Elastic IP and
+security group. Read that twice before hunting for anything: the console opens
+in whichever region it used last, and in the wrong one those lists are simply
+empty with no error to explain why. Route 53 is global and has no region
+picker.
+
+| | |
+|---|---|
+| Instance | `i-0f7d9894c082e9a49` (`t3.micro`, Ubuntu 26.04) |
+| Elastic IP | `52.14.87.6` — static, keep it associated |
+| SSH | `ssh -i ~/.ssh/Yukis.pem ubuntu@52.14.87.6` |
+| Repo on server | `/home/ubuntu/yuki` |
+| Web root | `/var/www/yuki` |
+| Domain | `yukis.space`, plus `www` and `yukispace.duckdns.org` |
+
+Full technical handover, including the traps that have already cost time, is in
+[`docs/website-guide.tex`](docs/website-guide.tex) and its built PDF.
+
 ## Deploying (all free)
 
 **Easiest:** drag the `D:\Yuki` folder onto <https://app.netlify.com/drop>.
