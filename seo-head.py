@@ -17,8 +17,8 @@ form as the real one.
 import io, os, re, glob
 
 SITE = 'https://yukis.space'
-OG_ALT = ("Yuki's Sacred Space - distance reiki, spirit guidance and death "
-          "doula work, sent anywhere")
+OG_ALT = ("Yuki's Sacred Space - distance reiki and spirit guidance, "
+          "sent anywhere")
 
 MARKER_START = '<!-- SEO:START -->'
 MARKER_END = '<!-- SEO:END -->'

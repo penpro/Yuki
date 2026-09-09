@@ -244,12 +244,12 @@ page('writing.html', u"Writing — " + YUKI + u"'s Sacred Space",
 
 # ── about.html ────────────────────────────────────────────────────────
 page('about.html', u"About — " + YUKI + u"'s Sacred Space",
-     u'Wisteria ' + YUKI + u' — spirit guide, reiki master, death doula. Training, certifications and how she works.',
+     u'Wisteria ' + YUKI + u' — high priestess. Training, certifications and how she works.',
      u'''<section class="phead">
   <div class="wrap">
     <a class="backlink" href="index.html"><span aria-hidden="true">&larr;</span> back to the sacred space</a>
     <h1 class="phead__title">about me</h1>
-    <p class="phead__sub">spirit guide &middot; reiki master &middot; death doula</p>
+    <p class="phead__sub">high priestess</p>
   </div>
 </section>
 
@@ -366,7 +366,7 @@ page('about.html', u"About — " + YUKI + u"'s Sacred Space",
         <li class="cert">
           <span class="cert__name">advanced cbt practitioner</span>
           <span class="cert__by">achology</span>
-          <span class="cert__when">ongoing</span>
+          <span class="cert__when">august &rsquo;26</span>
         </li>
       </ul>
 

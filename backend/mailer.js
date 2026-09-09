@@ -105,7 +105,7 @@ function renderHtml({ subject, preheader, body, ctaLabel, ctaUrl, unsubUrl }) {
 
       <tr><td align="center" style="padding:36px 32px 26px;border-bottom:1px solid rgba(233,222,216,0.11);">
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:23px;letter-spacing:1px;color:#EFE6E0;">Y&#363;ki&rsquo;s Sacred Space</div>
-        <div style="margin-top:9px;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#D4A94A;">spirit guide &middot; reiki master &middot; death doula</div>
+        <div style="margin-top:9px;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#D4A94A;">high priestess</div>
       </td></tr>
 
       <tr><td style="padding:34px 32px 10px;">
@@ -117,7 +117,7 @@ function renderHtml({ subject, preheader, body, ctaLabel, ctaUrl, unsubUrl }) {
       <tr><td style="padding:26px 32px 32px;border-top:1px solid rgba(233,222,216,0.11);">
         <p style="margin:0 0 12px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#9A8781;">
           You're getting this because you asked for it at
-          <a href="${BASE}" style="color:#D4A94A;">yukispace.duckdns.org</a>.
+          <a href="${BASE}" style="color:#D4A94A;">${BASE.replace(/^https?:\/\//, '')}</a>.
         </p>
         <p style="margin:0 0 12px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#9A8781;">
           <a href="${esc(unsubUrl)}" style="color:#9A8781;text-decoration:underline;">Unsubscribe</a>

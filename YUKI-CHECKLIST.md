@@ -22,7 +22,7 @@ Four sections are waiting for you. Rough targets:
 | section | length | what goes in it |
 |---|---|---|
 | **who i am** | 3–4 paragraphs | How you found this work and when. What you did before. What made you start doing it for other people. Who you love working with most. |
-| **training & certifications** | a list | Each one: what it is, who it was through, the year. Reiki levels and lineage, death doula training, any CBT or coaching programme, anything else. |
+| **training & certifications** | a list | Each one: what it is, who it was through, the year. Reiki levels and lineage, hypnotherapy, any CBT or coaching programme, anything else. |
 | **how i work** | 2–3 paragraphs | What someone should expect. What a session actually looks like from their side. This is the part that makes people decide you're the right person. |
 | **what i don't do** | short | Your actual limits. Medical advice, diagnoses, promises about outcomes, contacting people who haven't consented. Naming your boundaries makes people trust you *more*, not less. |
 
